@@ -1,0 +1,11 @@
+ejemplo_input = """
+Una vez, hace como tres años, me pasó algo raro que todavía no sé bien cómo procesar. Estaba en una reunión familiar, de esas donde hay demasiada comida, risas forzadas y gente que no ves desde hace siglos. Todo iba bien, bastante normal, hasta que apareció mi papá con su nueva pareja. Nadie nos había dicho nada.
+
+Fue un golpe raro. No porque no pudiera rehacer su vida, sino porque fue tan repentino… y justo ahí, sin previo aviso. Sentí como una mezcla entre sorpresa, incomodidad, un poco de rabia y también una culpa que no sabía de dónde venía.
+
+Me vi sonriendo para ser amable, diciendo cosas como “un gusto” y “qué bueno verte bien”, mientras por dentro tenía un nudo en la garganta. Al mismo tiempo me sentía ridículo por reaccionar así, como si tuviera 12 años. Pero también me sentí fuera de lugar, como si no perteneciera a esa escena, como si todos hubieran avanzado y yo me hubiera quedado en pausa.
+
+Después, mientras todos seguían charlando como si nada, me fui al patio con una copa de vino, solo. Y ahí me invadió una tristeza medio inesperada, no por él exactamente, sino porque me di cuenta de que algo se había terminado para siempre, aunque no supiera bien qué.
+
+Lo curioso es que también sentí un alivio, como si ver eso con mis propios ojos me sacara de una fantasía en la que seguía esperando que las cosas volvieran a ser como antes. Fue duro, pero necesario, creo.
+"""
