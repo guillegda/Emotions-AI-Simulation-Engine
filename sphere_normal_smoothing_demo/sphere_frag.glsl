@@ -14,22 +14,22 @@ void main() {
     vec3 base_color = vec3(r, g, b);
 
     // --- Primer foco de luz ---
-    vec3 light_dir1 = normalize(vec3(1.0, 1.0, 1.0));
+    vec3 light_dir1 = normalize(vec3(0.0, 1.0, 1.0));
     // Calculamos el valor difuso para el primer foco de luz
     float diff1 = max(dot(normal, light_dir1), 0.0);
     // Asignamos un color a esta luz (ej. blanco)
     vec3 light_color1 = vec3(1.0, 1.0, 1.0);
     // Calculamos la contribución del primer foco
-    vec3 light_contribution1 = light_color1 * diff1;
+    vec3 light_contribution1 = light_color1 * diff1 * 0.8;
 
     // --- Segundo foco de luz ---
-    vec3 light_dir2 = normalize(vec3(-1.0, -1.0, -1.0));
+    vec3 light_dir2 = normalize(vec3(0.0, -1.0, 1.0));
     // Calculamos el valor difuso para el segundo foco de luz
     float diff2 = max(dot(normal, light_dir2), 0.0);
-    // Asignamos un color a esta luz (ej. azulado)
-    vec3 light_color2 = vec3(0.5, 0.5, 1.0);
+    // Asignamos un color a esta luz (ej. blanco)
+    vec3 light_color2 = vec3(1.0, 1.0, 1.0);
     // Calculamos la contribución del segundo foco
-    vec3 light_contribution2 = light_color2 * diff2;
+    vec3 light_contribution2 = light_color2 * diff2 * 0.5;
 
     // Sumamos las contribuciones de ambas luces
     vec3 final_light_contribution = light_contribution1 + light_contribution2;

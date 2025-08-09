@@ -65,6 +65,14 @@ start = time.time()
 blur_strength = 3
 deform_mode = 0
 
+# Variables de control de la transición
+deform_mode_A = 0
+deform_mode_B = 0
+blend_factor = 0.0
+transition_duration = 0.5 # Duración de la transición en segundos
+transition_start_time = 0.0
+is_transitioning = False
+
 while not glfw.window_should_close(window):
     glfw.poll_events()
     now = time.time() - start
@@ -76,24 +84,49 @@ while not glfw.window_should_close(window):
     #     blur_strength = max(0.0, blur_strength - 0.1)
 
     # --- Control de modo de deformación con teclas ---
+    new_mode = -1 # Variable temporal para el nuevo modo
     if glfw.get_key(window, glfw.KEY_1) == glfw.PRESS:
-        deform_mode = 0 # Ondas
+        new_mode = 0
     if glfw.get_key(window, glfw.KEY_2) == glfw.PRESS:
-        deform_mode = 1 # Burbujas
+        new_mode = 1
     if glfw.get_key(window, glfw.KEY_3) == glfw.PRESS:
-        deform_mode = 2 # Pinchos
+        new_mode = 2
 
+    # Si se pulsa una tecla de modo diferente al actual y no hay una transición en curso
+    if new_mode != -1 and new_mode != deform_mode_A and not is_transitioning:
+        deform_mode_B = new_mode
+        is_transitioning = True
+        transition_start_time = now
+
+    # Si hay una transición en curso, calcula el blend_factor
+    if is_transitioning:
+        elapsed_time = now - transition_start_time
+        blend_factor = min(elapsed_time / transition_duration, 1.0)
+        if blend_factor >= 1.0:
+            # La transición ha terminado
+            deform_mode_A = deform_mode_B
+            is_transitioning = False
+            blend_factor = 0.0
+    
     # Renderizado a framebuffer
     fbo.use()
-    ctx.clear(0.1, 0.1, 0.15)
-    #model = Matrix44.from_y_rotation(now * 0.4) # Si quiero que rote la matriz modelo en el eje y
-    model = Matrix44.identity()
+    ctx.clear(0.05, 0.05, 0.05) # Color de fondo de la escena
+    #model = Matrix44.from_y_rotation(now * 0.4) # Con rotación de la esfera
+    model = Matrix44.identity() # Sin rotación de la esfera
 
     prog_sphere['time'].value = now
+    prog_sphere['velocidad'].value = 5.0
+    prog_sphere['rugosidad'].value = 10.0
+    prog_sphere['distorsion'].value = 0.1
     prog_sphere['model'].write(model.astype('f4').tobytes())
     prog_sphere['view'].write(view.astype('f4').tobytes())
     prog_sphere['projection'].write(projection.astype('f4').tobytes())
-    prog_sphere['deform_mode'].value = deform_mode
+    
+    # Enviamos los nuevos uniformes para la transición
+    prog_sphere['deform_mode_A'].value = deform_mode_A
+    prog_sphere['deform_mode_B'].value = deform_mode_B
+    prog_sphere['blend_factor'].value = blend_factor
+    
     vao_sphere.render()
 
     # Postproceso
