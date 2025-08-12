@@ -1,5 +1,5 @@
 
-#main.py
+#sphere_simulator.py
 import glfw
 import moderngl
 import numpy as np
@@ -135,10 +135,12 @@ while not glfw.window_should_close(window):
     #model = Matrix44.from_y_rotation(now * 0.4) # Con rotación de la esfera
     model = Matrix44.identity() # Sin rotación de la esfera
 
+    # Parámetros manipulables en tiempo real:
     prog_sphere['time'].value = now
     prog_sphere['velocidad'].value = 5.0
     prog_sphere['rugosidad'].value = 10.0
     prog_sphere['distorsion'].value = 0.1
+    prog_sphere['wave_direction'].value = 0
     prog_sphere['model'].write(model.astype('f4').tobytes())
     prog_sphere['view'].write(view.astype('f4').tobytes())
     prog_sphere['projection'].write(projection.astype('f4').tobytes())
@@ -165,8 +167,7 @@ while not glfw.window_should_close(window):
     #Damos valor a las variables de entrada de post_frag.glsl
     prog_post['texture0'].value = 0
     prog_post['resolution'].value = (800.0, 600.0)
-    prog_post['blur_strength'].value = blur_strength
-    #prog_post['bloom_amount'].value = bloom_amount
+    prog_post['blur_strength'].value = blur_strength # esto es manipulable en tiempo real también
     vao_post.render(moderngl.TRIANGLE_STRIP)
 
     glfw.swap_buffers(window)
