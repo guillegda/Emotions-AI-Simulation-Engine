@@ -1,8 +1,10 @@
 
+#main.py
 import glfw
 import moderngl
 import numpy as np
 import time
+import random
 from pyrr import Matrix44
 
 # Cargar malla de esfera
@@ -62,8 +64,9 @@ projection = Matrix44.perspective_projection(45.0, 800 / 600, 0.1, 100.0)
 view = Matrix44.look_at((0.0, 0.0, 3.0), (0.0, 0.0, 0.0), (0.0, 1.0, 0.0))
 
 start = time.time()
-blur_strength = 3
+blur_strength = 5
 deform_mode = 0
+bloom_amount = 10.5
 
 # Variables de control de la transición
 deform_mode_A = 0
@@ -72,6 +75,8 @@ blend_factor = 0.0
 transition_duration = 0.5 # Duración de la transición en segundos
 transition_start_time = 0.0
 is_transitioning = False
+hybrid_amnts_A = [0.0, 0.0, 0.0]
+hybrid_amnts_B = [0.0, 0.0, 0.0]
 
 while not glfw.window_should_close(window):
     glfw.poll_events()
@@ -84,29 +89,45 @@ while not glfw.window_should_close(window):
     #     blur_strength = max(0.0, blur_strength - 0.1)
 
     # --- Control de modo de deformación con teclas ---
-    new_mode = -1 # Variable temporal para el nuevo modo
+    new_mode = -1
     if glfw.get_key(window, glfw.KEY_1) == glfw.PRESS:
         new_mode = 0
     if glfw.get_key(window, glfw.KEY_2) == glfw.PRESS:
         new_mode = 1
     if glfw.get_key(window, glfw.KEY_3) == glfw.PRESS:
         new_mode = 2
+    if glfw.get_key(window, glfw.KEY_4) == glfw.PRESS:
+        new_mode = 3 # Modo Híbrido
 
-    # Si se pulsa una tecla de modo diferente al actual y no hay una transición en curso
     if new_mode != -1 and new_mode != deform_mode_A and not is_transitioning:
         deform_mode_B = new_mode
         is_transitioning = True
         transition_start_time = now
 
-    # Si hay una transición en curso, calcula el blend_factor
+        # Si el nuevo modo es híbrido, generamos los nuevos porcentajes
+        if new_mode == 3:
+            # Los valores actuales (A) pasan a ser los futuros (B)
+            hybrid_amnts_A = hybrid_amnts_B.copy()
+            # Y generamos los nuevos valores para el modo B
+            total = 0.0
+            new_amnts = [0.0, 0.0, 0.0]
+            for i in range(3):
+                new_amnts[i] = random.uniform(0.0, 1.0)
+                total += new_amnts[i]
+            # Normalizamos para que la suma sea 1.0
+            hybrid_amnts_B = [a / total for a in new_amnts]
+
     if is_transitioning:
         elapsed_time = now - transition_start_time
         blend_factor = min(elapsed_time / transition_duration, 1.0)
         if blend_factor >= 1.0:
-            # La transición ha terminado
             deform_mode_A = deform_mode_B
             is_transitioning = False
             blend_factor = 0.0
+            if deform_mode_A == 3:
+                hybrid_amnts_A = hybrid_amnts_B.copy()
+            else:
+                hybrid_amnts_A = [0.0, 0.0, 0.0]
     
     # Renderizado a framebuffer
     fbo.use()
@@ -126,7 +147,15 @@ while not glfw.window_should_close(window):
     prog_sphere['deform_mode_A'].value = deform_mode_A
     prog_sphere['deform_mode_B'].value = deform_mode_B
     prog_sphere['blend_factor'].value = blend_factor
-    
+
+    # Enviamos valores para los efectos hibridos
+    prog_sphere['effect1_amnt_A'].value = hybrid_amnts_A[0]
+    prog_sphere['effect2_amnt_A'].value = hybrid_amnts_A[1]
+    prog_sphere['effect3_amnt_A'].value = hybrid_amnts_A[2]
+    prog_sphere['effect1_amnt_B'].value = hybrid_amnts_B[0]
+    prog_sphere['effect2_amnt_B'].value = hybrid_amnts_B[1]
+    prog_sphere['effect3_amnt_B'].value = hybrid_amnts_B[2]
+
     vao_sphere.render()
 
     # Postproceso
@@ -137,6 +166,7 @@ while not glfw.window_should_close(window):
     prog_post['texture0'].value = 0
     prog_post['resolution'].value = (800.0, 600.0)
     prog_post['blur_strength'].value = blur_strength
+    #prog_post['bloom_amount'].value = bloom_amount
     vao_post.render(moderngl.TRIANGLE_STRIP)
 
     glfw.swap_buffers(window)

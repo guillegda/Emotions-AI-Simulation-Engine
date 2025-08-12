@@ -20,7 +20,7 @@ void main() {
     // Asignamos un color a esta luz (ej. blanco)
     vec3 light_color1 = vec3(1.0, 1.0, 1.0);
     // Calculamos la contribución del primer foco
-    vec3 light_contribution1 = light_color1 * diff1 * 0.8;
+    vec3 light_contribution1 = light_color1 * diff1 * 1.8;
 
     // --- Segundo foco de luz ---
     vec3 light_dir2 = normalize(vec3(0.0, -1.0, 1.0));
