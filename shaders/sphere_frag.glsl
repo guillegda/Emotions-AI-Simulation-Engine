@@ -3,22 +3,26 @@
 in vec3 v_normal;
 out vec4 f_color;
 uniform float time;
+uniform vec3 base_color;
+uniform vec3 light_color1;
+uniform vec3 light_color2;
+
 
 void main() {
     vec3 normal = normalize(v_normal);
 
     // Color base del material de la esfera
-    float r = 0.6 + 0.4 * sin(time);
-    float g = 0.5 + 0.5 * cos(time * 1.2);
-    float b = 0.7 + 0.3 * sin(time * 0.8);
-    vec3 base_color = vec3(r, g, b);
+    // float r = 0.6 + 0.4 * sin(time);
+    // float g = 0.5 + 0.5 * cos(time * 1.2);
+    // float b = 0.7 + 0.3 * sin(time * 0.8);
+    // base_color = vec3(r, g, b);
 
     // --- Primer foco de luz ---
     vec3 light_dir1 = normalize(vec3(0.0, 1.0, 1.0));
     // Calculamos el valor difuso para el primer foco de luz
     float diff1 = max(dot(normal, light_dir1), 0.0);
     // Asignamos un color a esta luz (ej. blanco)
-    vec3 light_color1 = vec3(1.0, 1.0, 1.0);
+    // light_color1 = vec3(1.0, 1.0, 1.0);
     // Calculamos la contribución del primer foco
     vec3 light_contribution1 = light_color1 * diff1 * 1.8;
 
@@ -27,7 +31,7 @@ void main() {
     // Calculamos el valor difuso para el segundo foco de luz
     float diff2 = max(dot(normal, light_dir2), 0.0);
     // Asignamos un color a esta luz (ej. blanco)
-    vec3 light_color2 = vec3(1.0, 1.0, 1.0);
+    // light_color2 = vec3(1.0, 1.0, 1.0);
     // Calculamos la contribución del segundo foco
     vec3 light_contribution2 = light_color2 * diff2 * 0.5;
 

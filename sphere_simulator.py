@@ -53,6 +53,11 @@ class SphereSimulator:
         self.distorsion = 0.1
         self.wave_direction = 0
 
+        # parámetros de color para los shaders
+        self.base_color = (1.0, 0.5, 0.2)
+        self.light_color1 = (1.0, 1.0, 1.0)
+        self.light_color2 = (0.5, 0.5, 0.5)
+
         self._init_moderngl()
         self._load_shaders()
         self._load_mesh()
@@ -67,15 +72,15 @@ class SphereSimulator:
     def _load_shaders(self):
         """Carga y compila los shaders desde archivos."""
         try:
-            with open("sphere_normal_smoothing_demo/sphere_vert.glsl", 'r') as f:
+            with open("shaders/sphere_vert.glsl", 'r') as f:
                 vert_shader = f.read()
-            with open("sphere_normal_smoothing_demo/sphere_frag.glsl", 'r') as f:
+            with open("shaders/sphere_frag.glsl", 'r') as f:
                 frag_shader = f.read()
             self.prog_sphere = self.ctx.program(vertex_shader=vert_shader, fragment_shader=frag_shader)
 
-            with open("sphere_normal_smoothing_demo/post_vert.glsl", 'r') as f:
+            with open("shaders/post_vert.glsl", 'r') as f:
                 post_vert_shader = f.read()
-            with open("sphere_normal_smoothing_demo/post_frag.glsl", 'r') as f:
+            with open("shaders/post_frag.glsl", 'r') as f:
                 post_frag_shader = f.read()
             self.prog_post = self.ctx.program(vertex_shader=post_vert_shader, fragment_shader=post_frag_shader)
         except FileNotFoundError as e:
@@ -180,6 +185,11 @@ class SphereSimulator:
         self.prog_sphere['model'].write(model.astype('f4').tobytes())
         self.prog_sphere['view'].write(self.view.astype('f4').tobytes())
         self.prog_sphere['projection'].write(self.projection.astype('f4').tobytes())
+
+        # Enviar los nuevos uniformes de color al shader
+        self.prog_sphere['base_color'].value = self.base_color
+        self.prog_sphere['light_color1'].value = self.light_color1
+        self.prog_sphere['light_color2'].value = self.light_color2
         
         # Enviar uniformes para la transición de modos
         self.prog_sphere['deform_mode_A'].value = self.deform_mode_A
