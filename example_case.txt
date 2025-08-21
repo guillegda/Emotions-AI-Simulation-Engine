@@ -9,3 +9,119 @@ Después, mientras todos seguían charlando como si nada, me fui al patio con un
 
 Lo curioso es que también sentí un alivio, como si ver eso con mis propios ojos me sacara de una fantasía en la que seguía esperando que las cosas volvieran a ser como antes. Fue duro, pero necesario, creo.
 """
+
+Ejemplo de salida:
+[
+  {
+    "fragmento": "Una vez, hace como tres años, me pasó algo raro que todavía no sé bien cómo procesar.",
+    "tipo1": "Sorpresa",
+    "intensidad1": "Sorpresa",
+    "tipo2": "Tristeza",
+    "intensidad2": "Melancolía",
+    "matiz": "Decepción"
+  },
+  {
+    "fragmento": "Estaba en una reunión familiar, de esas donde hay demasiada comida, risas forzadas y gente que no ves desde hace siglos.",
+    "tipo1": "Alegría",
+    "intensidad1": "Alegría",
+    "tipo2": "Animadversión",
+    "intensidad2": "Aburrimiento",
+    "matiz": "Ninguno"
+  },
+  {
+    "fragmento": "Todo iba bien, bastante normal, hasta que apareció mi papá con su nueva pareja.",
+    "tipo1": "Sorpresa",
+    "intensidad1": "Sorpresa",
+    "tipo2": "Ninguno",
+    "intensidad2": "Ninguno",
+    "matiz": "Ninguno"
+  },
+  {
+    "fragmento": "Nadie nos había dicho nada.",
+    "tipo1": "Sorpresa",
+    "intensidad1": "Sorpresa",
+    "tipo2": "Ninguno",
+    "intensidad2": "Ninguno",
+    "matiz": "Ninguno"
+  },
+  {
+    "fragmento": "Fue un golpe raro. No porque no pudiera rehacer su vida, sino porque fue tan repentino… y justo ahí, sin previo aviso.",
+    "tipo1": "Sorpresa",
+    "intensidad1": "Sorpresa",
+    "tipo2": "Ira",
+    "intensidad2": "Enfado",
+    "matiz": "Ninguno"
+  },
+  {
+    "fragmento": "Sentí como una mezcla entre sorpresa, incomodidad,",
+    "tipo1": "Sorpresa",
+    "intensidad1": "Sorpresa",
+    "tipo2": "Miedo",
+    "intensidad2": "Aprensión",
+    "matiz": "Pavor"
+  },
+  {
+    "fragmento": "un poco de rabia y también una culpa que no sabía de dónde venía.",
+    "tipo1": "Ira",
+    "intensidad1": "Ira",
+    "tipo2": "Tristeza",
+    "intensidad2": "Tristeza",
+    "matiz": "Remordimiento"
+  },
+  {
+    "fragmento": "Me vi sonriendo para ser amable, diciendo cosas como “un gusto” y “qué bueno verte bien”, mientras por dentro tenía un nudo en la garganta.",
+    "tipo1": "Alegría",
+    "intensidad1": "Alegría",
+    "tipo2": "Tristeza",
+    "intensidad2": "Tristeza",
+    "matiz": "Ninguno"
+  },
+  {
+    "fragmento": "Al mismo tiempo me sentía ridículo por reaccionar así, como si tuviera 12 años.",
+    "tipo1": "Tristeza",
+    "intensidad1": "Tristeza",
+    "tipo2": "Ninguno",
+    "intensidad2": "Ninguno",
+    "matiz": "Ninguno"
+  },
+  {
+    "fragmento": "Pero también me sentí fuera de lugar, como si no perteneciera a esa escena, como si todos hubieran avanzado y yo me hubiera quedado en pausa.",
+    "tipo1": "Tristeza",
+    "intensidad1": "Tristeza",
+    "tipo2": "Miedo",
+    "intensidad2": "Miedo",
+    "matiz": "Ninguno"
+  },
+  {
+    "fragmento": "Después, mientras todos seguían charlando como si nada, me fui al patio con una copa de vino, solo.",
+    "tipo1": "Tristeza",
+    "intensidad1": "Tristeza",
+    "tipo2": "Ninguno",
+    "intensidad2": "Ninguno",
+    "matiz": "Ninguno"
+  },
+  {
+    "fragmento": "Y ahí me invadió una tristeza medio inesperada, no por él exactamente, sino porque me di cuenta de que algo se había terminado para siempre, aunque no supiera bien qué.",
+    "tipo1": "Tristeza",
+    "intensidad1": "Tristeza",
+    "tipo2": "Ninguno",
+    "intensidad2": "Ninguno",
+    "matiz": "Ninguno"
+  },
+  {
+    "fragmento": "Lo curioso es que también sentí un alivio, como si ver eso con mis propios ojos me sacara de una fantasía en la que seguía esperando que las cosas volvieran a ser como antes.",
+    "tipo1": "Alegría",
+    "intensidad1": "Serenidad",
+    "tipo2": "Sorpresa",
+    "intensidad2": "Sorpresa",
+    "matiz": "Ninguno"
+  },
+  {
+    "fragmento": "Fue duro, pero necesario, creo.",
+    "tipo1": "Tristeza",
+    "intensidad1": "Melancolía",
+    "tipo2": "Aceptación",
+    "intensidad2": "Aceptación",
+    "matiz": "Ninguno"
+  }
+]

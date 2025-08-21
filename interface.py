@@ -35,8 +35,8 @@ class InterfaceApp(ctk.CTk):
         self.submit_button.grid(row=3, column=0, padx=20, pady=(0, 10))
 
         # Canvas como placeholder de imagen 2D
-        self.image_canvas = ctk.CTkCanvas(self, bg="black", highlightthickness=0)
-        self.image_canvas.grid(row=4, column=0, padx=20, pady=(0, 20), sticky="nsew")
+        # self.image_canvas = ctk.CTkCanvas(self, bg="black", highlightthickness=0)
+        # self.image_canvas.grid(row=4, column=0, padx=20, pady=(0, 20), sticky="nsew")
 
     def submit_text(self):
         user_text = self.text_input.get("1.0", "end").strip()
