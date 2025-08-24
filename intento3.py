@@ -95,30 +95,30 @@ class GeminiClient:
 # to avoid dependency on external files.
 emotions_params_json_str = """
 [
-  { "Serenidad": { "color": "#ADD8E6", "velocidad": 0.2, "rugosidad": 0.1, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Alegría": { "color": "#FFD700", "velocidad": 0.6, "rugosidad": 0.3, "distorsion": 0.2, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Éxtasis": { "color": "#FF0392", "velocidad": 1.0, "rugosidad": 0.8, "distorsion": 0.9, "wave_direction": 2 , "deform_mode": 2 } },
-  { "Aceptación": { "color": "#9ACD32", "velocidad": 0.3, "rugosidad": 0.2, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Confianza": { "color": "#4682B4", "velocidad": 0.5, "rugosidad": 0.2, "distorsion": 0.1, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Admiración": { "color": "#f797f7", "velocidad": 0.4, "rugosidad": 0.3, "distorsion": 0.2, "wave_direction": 2 , "deform_mode": 2 } },
-  { "Aprensión": { "color": "#abbd6b", "velocidad": 0.5, "rugosidad": 0.6, "distorsion": 0.6, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Miedo": { "color": "#736785", "velocidad": 0.7, "rugosidad": 0.8, "distorsion": 0.7, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Terror": { "color": "#30223b", "velocidad": 1.0, "rugosidad": 1.0, "distorsion": 1.0, "wave_direction": 2 , "deform_mode": 2 } },
-  { "Distracción": { "color": "#b1fce4", "velocidad": 0.3, "rugosidad": 0.4, "distorsion": 0.5, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Sorpresa": { "color": "#FFFF00", "velocidad": 0.8, "rugosidad": 0.7, "distorsion": 0.9, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Asombro": { "color": "#2ef2e8", "velocidad": 0.9, "rugosidad": 0.8, "distorsion": 0.8, "wave_direction": 2 , "deform_mode": 2 } },
-  { "Melancolía": { "color": "#9ba4e8", "velocidad": 0.2, "rugosidad": 0.4, "distorsion": 0.3, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Tristeza": { "color": "#435fba", "velocidad": 0.1, "rugosidad": 0.3, "distorsion": 0.2, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Pena": { "color": "#202059", "velocidad": 0.1, "rugosidad": 0.2, "distorsion": 0.1, "wave_direction": 2 , "deform_mode": 2 } },
-  { "Aburrimiento": { "color": "#9eaeb0", "velocidad": 0.1, "rugosidad": 0.1, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Asco": { "color": "#556B2F", "velocidad": 0.6, "rugosidad": 0.8, "distorsion": 0.8, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Odio": { "color": "#57122e", "velocidad": 0.8, "rugosidad": 0.9, "distorsion": 0.9, "wave_direction": 2 , "deform_mode": 2 } },
-  { "Enfado": { "color": "#DC143C", "velocidad": 0.7, "rugosidad": 0.8, "distorsion": 0.7, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Ira": { "color": "#a60a0a", "velocidad": 0.9, "rugosidad": 0.9, "distorsion": 0.8, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Furia": { "color": "#b00505", "velocidad": 1.0, "rugosidad": 1.0, "distorsion": 1.0, "wave_direction": 2 , "deform_mode": 2 } },
-  { "Interés": { "color": "#20B2AA", "velocidad": 0.4, "rugosidad": 0.3, "distorsion": 0.2, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Anticipación": { "color": "#FFA500", "velocidad": 0.6, "rugosidad": 0.5, "distorsion": 0.4, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Vigilancia": { "color": "#ff8c00", "velocidad": 0.7, "rugosidad": 0.6, "distorsion": 0.5, "wave_direction": 2 , "deform_mode": 2 } }
+  { "Serenidad": { "color": "#ADD8E6", "velocidad": 5.2, "rugosidad": 10.1, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 0 } },
+  { "Alegría": { "color": "#FFD700", "velocidad": 5.6, "rugosidad": 10.3, "distorsion": 0.2, "wave_direction": 1 , "deform_mode": 1 } },
+  { "Éxtasis": { "color": "#FF0392", "velocidad": 5.0, "rugosidad": 10.8, "distorsion": 0.9, "wave_direction": 2 , "deform_mode": 2 } },
+  { "Aceptación": { "color": "#9ACD32", "velocidad": 5.3, "rugosidad": 10.2, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 0 } },
+  { "Confianza": { "color": "#4682B4", "velocidad": 5.5, "rugosidad": 10.2, "distorsion": 0.1, "wave_direction": 1 , "deform_mode": 1 } },
+  { "Admiración": { "color": "#f797f7", "velocidad": 5.4, "rugosidad": 10.3, "distorsion": 0.2, "wave_direction": 2 , "deform_mode": 2 } },
+  { "Aprensión": { "color": "#abbd6b", "velocidad": 5.5, "rugosidad": 10.6, "distorsion": 0.6, "wave_direction": 0 , "deform_mode": 0 } },
+  { "Miedo": { "color": "#736785", "velocidad": 5.7, "rugosidad": 10.8, "distorsion": 0.7, "wave_direction": 1 , "deform_mode": 1 } },
+  { "Terror": { "color": "#30223b", "velocidad": 5.0, "rugosidad": 11.0, "distorsion": 1.0, "wave_direction": 2 , "deform_mode": 2 } },
+  { "Distracción": { "color": "#b1fce4", "velocidad": 5.3, "rugosidad": 10.4, "distorsion": 0.5, "wave_direction": 0 , "deform_mode": 0 } },
+  { "Sorpresa": { "color": "#FFFF00", "velocidad": 5.8, "rugosidad": 10.7, "distorsion": 0.9, "wave_direction": 1 , "deform_mode": 1 } },
+  { "Asombro": { "color": "#2ef2e8", "velocidad": 5.9, "rugosidad": 10.8, "distorsion": 0.8, "wave_direction": 2 , "deform_mode": 2 } },
+  { "Melancolía": { "color": "#9ba4e8", "velocidad": 5.2, "rugosidad": 10.4, "distorsion": 0.3, "wave_direction": 0 , "deform_mode": 0 } },
+  { "Tristeza": { "color": "#435fba", "velocidad": 5.1, "rugosidad": 10.3, "distorsion": 0.2, "wave_direction": 1 , "deform_mode": 1 } },
+  { "Pena": { "color": "#202059", "velocidad": 5.1, "rugosidad": 10.2, "distorsion": 0.1, "wave_direction": 2 , "deform_mode": 2 } },
+  { "Aburrimiento": { "color": "#9eaeb0", "velocidad": 5.1, "rugosidad": 10.1, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 0 } },
+  { "Asco": { "color": "#556B2F", "velocidad": 5.6, "rugosidad": 10.8, "distorsion": 0.8, "wave_direction": 1 , "deform_mode": 1 } },
+  { "Odio": { "color": "#57122e", "velocidad": 5.8, "rugosidad": 10.9, "distorsion": 0.9, "wave_direction": 2 , "deform_mode": 2 } },
+  { "Enfado": { "color": "#DC143C", "velocidad": 5.7, "rugosidad": 10.8, "distorsion": 0.7, "wave_direction": 0 , "deform_mode": 0 } },
+  { "Ira": { "color": "#a60a0a", "velocidad": 5.9, "rugosidad": 10.9, "distorsion": 0.8, "wave_direction": 1 , "deform_mode": 1 } },
+  { "Furia": { "color": "#b00505", "velocidad": 5.0, "rugosidad": 11.0, "distorsion": 1.0, "wave_direction": 2 , "deform_mode": 2 } },
+  { "Interés": { "color": "#20B2AA", "velocidad": 5.4, "rugosidad": 10.3, "distorsion": 0.2, "wave_direction": 0 , "deform_mode": 0 } },
+  { "Anticipación": { "color": "#FFA500", "velocidad": 5.6, "rugosidad": 10.5, "distorsion": 0.4, "wave_direction": 1 , "deform_mode": 1 } },
+  { "Vigilancia": { "color": "#ff8c00", "velocidad": 5.7, "rugosidad": 10.6, "distorsion": 0.5, "wave_direction": 2 , "deform_mode": 2 } }
 ]
 """
 
@@ -278,17 +278,15 @@ class InterfaceApp(ctk.CTk):
             elif not self.client:
                 messagebox.showwarning("Client not available", "Could not initialize the API client.")
 
-
-
 class SphereSimulator:
-    # (The SphereSimulator class and related functions are not modified
-    # as they already expect a list of parameters, which is provided now)
+    """
+    Clase reutilizable para la simulación de una esfera con deformaciones
+    y postproceso usando ModernGL y GLFW.
+    """
     
     def __init__(self, window, width: int = 800, height: int = 600, 
                  emotions_list: list = None):
-        """
-        Initializes the ModernGL context, shaders, and sphere geometry.
-        """
+        # ... (inicialización sin cambios)
         self.window = window
         self.width = width
         self.height = height
@@ -301,7 +299,10 @@ class SphereSimulator:
         self.projection = None
         self.view = None
         self.start_time = time.time()
-        
+
+        # Parámetros de la simulación
+        self.blur_strength = 5.0
+
         # State for emotions transition
         self.emotions_list = emotions_list if emotions_list else []
         self.current_index = 0
@@ -314,63 +315,51 @@ class SphereSimulator:
         self.params_B = {}
         
         if self.emotions_list:
-            # Set the initial state
             self.params_A = self.emotions_list[0].copy()
-            self.params_B = self.params_A.copy()
-            
-        # Initialize rendering parameters
-        self.blur_strength = 5.0
+            self.params_B = self.emotions_list[0].copy()
+
+        # parámetros de color para los shaders
         self.light_color1 = (1.0, 1.0, 1.0)
         self.light_color2 = (0.5, 0.5, 0.5)
-        
+
         self._init_moderngl()
         self._load_shaders()
         self._load_mesh()
         self._setup_framebuffer()
         self._setup_matrices()
-        
+
     def _init_moderngl(self):
-        """Creates the ModernGL context and sets up the initial state."""
         self.ctx = moderngl.create_context()
         self.ctx.enable(moderngl.DEPTH_TEST)
 
     def _load_shaders(self):
-        """Loads and compiles the shaders."""
         try:
             with open("shaders/sphere_vert.glsl", 'r') as f:
                 vert_shader = f.read()
             with open("shaders/sphere_frag.glsl", 'r') as f:
                 frag_shader = f.read()
             self.prog_sphere = self.ctx.program(vertex_shader=vert_shader, fragment_shader=frag_shader)
-
             with open("shaders/post_vert.glsl", 'r') as f:
                 post_vert_shader = f.read()
             with open("shaders/post_frag.glsl", 'r') as f:
                 post_frag_shader = f.read()
             self.prog_post = self.ctx.program(vertex_shader=post_vert_shader, fragment_shader=post_frag_shader)
         except FileNotFoundError as e:
-            print(f"Error: Shader file not found. Make sure the .glsl files are in the correct path. Details: {e}")
+            print(f"Error: No se encontró el archivo de shader. Detalles: {e}")
             raise
 
     def _load_mesh(self):
-        """Loads the sphere mesh from .npy files and creates VAOs."""
         try:
             vertices = np.load("vertices_high_res.npy")
             indices = np.load("indices_high_res.npy")
-
             vbo = self.ctx.buffer(vertices.astype('f4').tobytes())
             ibo = self.ctx.buffer(indices.astype('i4').tobytes())
             self.vao_sphere = self.ctx.simple_vertex_array(self.prog_sphere, vbo, 'in_position', index_buffer=ibo)
         except FileNotFoundError as e:
-            print(f"Error: Mesh file not found. Make sure the .npy files are in the correct path. Details: {e}")
+            print(f"Error: No se encontró el archivo de malla. Detalles: {e}")
             raise
         
-        quad_vertices = np.array([
-            -1, -1, 0, 0,
-             1, -1, 1, 0,
-            -1,  1, 0, 1,
-             1,  1, 1, 1,
-        ], dtype='f4')
+        quad_vertices = np.array([-1, -1, 0, 0, 1, -1, 1, 0, -1, 1, 0, 1, 1, 1, 1, 1,], dtype='f4')
         quad_vbo = self.ctx.buffer(quad_vertices.tobytes())
         self.vao_post = self.ctx.simple_vertex_array(self.prog_post, quad_vbo, 'in_pos', 'in_uv')
 
@@ -385,32 +374,19 @@ class SphereSimulator:
         self.view = Matrix44.look_at((0.0, 0.0, 3.0), (0.0, 0.0, 0.0), (0.0, 1.0, 0.0))
 
     def start_next_transition(self):
-        """
-        Inicia la transición al siguiente conjunto de parámetros.
-        """
-        if self.current_index < len(self.emotions_list) - 1:
-            self.current_index += 1
+        """Inicia la transición al siguiente conjunto de parámetros de la lista de emociones."""
+        if self.current_index < len(self.emotions_list):
+            self.params_A = self.params_B.copy()
+            self.params_B = self.emotions_list[self.current_index].copy()
             self.is_transitioning = True
             self.transition_start_time = time.time()
-
-            self.params_A = self.emotions_list[self.current_index - 1].copy()
-            self.params_B = self.emotions_list[self.current_index].copy()
-            
-            print(f"[INFO] Nuevo color: {self.params_B.get('color', 'unknown')}")
-            print(f"[INFO] Nueva velocidad: {self.params_B.get('velocidad', 'unknown')}")
-            print(f"[INFO] Nueva rugosidad: {self.params_B.get('rugosidad', 'unknown')}")
-            print(f"[INFO] Nueva distorsion: {self.params_B.get('distorsion', 'unknown')}")
-            print(f"[INFO] Nueva direccion: {self.params_B.get('wave_direction', 'unknown')}")
-            print(f"[INFO] Nuevo modo: {self.params_B.get('deform_mode', 'unknown')}")
-            self.velocidad = self.params_B.get('velocidad', 0.1)
-            self.rugosidad = self.params_B.get('rugosidad', 0.1)
-            self.distorsion = self.params_B.get('distorsion', 0.1)
-            self.wave_direction = self.params_B.get('wave_direction', 0)
+            print(f"[INFO] Iniciando transición a la emoción {self.current_index + 1}: {self.params_B.get('name', 'N/A')}")
+            self.current_index += 1
         else:
-            print("[INFO] Reached the end of the emotion name list.")
+            print("[INFO] Se ha alcanzado el final de la lista de emociones.")
 
     def _update_transition(self, now):
-        """Calculates the blend factor for a smooth transition."""
+        """Calcula el factor de mezcla para una transición suave."""
         if self.is_transitioning:
             elapsed_time = now - self.transition_start_time
             blend_factor = min(elapsed_time / self.transition_duration, 1.0)
@@ -421,74 +397,66 @@ class SphereSimulator:
         return 0.0
 
     def render(self, now):
-        """Renders the sphere with the current or transitioning parameters."""
-        blend_factor = self._update_transition(time.time())
+        """Dibuja un solo fotograma de la simulación."""
+        # Se calcula el tiempo de la simulación para la animación.
+        # Esto es crucial para que la esfera se mueva continuamente.
+        simulation_time = now - self.start_time
+
+        blend_factor = self._update_transition(now)
         self.fbo.use()
         self.ctx.clear(0.05, 0.05, 0.05)
         model = Matrix44.identity()
 
-        # Interpolate all parameters
         def lerp(a, b, t):
             return a + (b - a) * t
         
         def lerp_vec3(a, b, t):
-            # Check if a and b are tuples or lists of numbers
-            if not isinstance(a, (tuple, list)) or not isinstance(b, (tuple, list)):
-                return b # Return B if not interpolatable
+            if not isinstance(a, (tuple, list)) or not isinstance(b, (tuple, list)) or len(a) != len(b):
+                return b
             return tuple(lerp(a[i], b[i], t) for i in range(len(a)))
         
         def get_param(param_name, default, is_vector=False):
             val_A = self.params_A.get(param_name, default)
             val_B = self.params_B.get(param_name, default)
-            
             if is_vector:
                 return lerp_vec3(val_A, val_B, blend_factor)
-            
             if isinstance(val_A, (int, float)) and isinstance(val_B, (int, float)):
                 return lerp(val_A, val_B, blend_factor)
             return val_B
 
-        # Get parameters for the transition
+        # Obtener los parámetros interpolados
         velocidad_current = get_param('velocidad', 5.0)
         rugosidad_current = get_param('rugosidad', 10.0)
-        distorsion_current = get_param('distorsion', 3.1)
+        distorsion_current = get_param('distorsion', 0.1)
         wave_direction_current = get_param('wave_direction', 0)
-        
         base_color_current = get_param('color', (1.0, 1.0, 1.0), is_vector=True)
-        deform_mode_current = int(get_param('deform_mode', 0))
+        hybrid_amnts_A = self.params_A.get('hybrid_amnts', [0.0, 0.0, 0.0])
+        hybrid_amnts_B = self.params_B.get('hybrid_amnts', [0.0, 0.0, 0.0])
         
-        hybrid_amnts_current = get_param('hybrid_amnts', [0.0, 0.0, 0.0], is_vector=True)
-        
-        # Update uniforms
-        self.prog_sphere['time'].value = now
+        # Enviar uniformes al shader de la esfera
+        self.prog_sphere['time'].value = simulation_time  # ¡CAMBIO CLAVE AQUÍ!
         self.prog_sphere['velocidad'].value = velocidad_current
         self.prog_sphere['rugosidad'].value = rugosidad_current
         self.prog_sphere['distorsion'].value = distorsion_current
-        self.prog_sphere['wave_direction'].value = int(wave_direction_current)
+        self.prog_sphere['wave_direction'].value = int(round(wave_direction_current))
         self.prog_sphere['model'].write(model.astype('f4').tobytes())
         self.prog_sphere['view'].write(self.view.astype('f4').tobytes())
         self.prog_sphere['projection'].write(self.projection.astype('f4').tobytes())
         self.prog_sphere['base_color'].value = base_color_current
         self.prog_sphere['light_color1'].value = self.light_color1
         self.prog_sphere['light_color2'].value = self.light_color2
-        
         self.prog_sphere['deform_mode_A'].value = int(self.params_A.get('deform_mode', 0))
         self.prog_sphere['deform_mode_B'].value = int(self.params_B.get('deform_mode', 0))
         self.prog_sphere['blend_factor'].value = blend_factor
-        
-        
-        hybrid_amnts_A = self.params_A.get('hybrid_amnts', [0.0, 0.0, 0.0])
-        hybrid_amnts_B = self.params_B.get('hybrid_amnts', [0.0, 0.0, 0.0])
-
         self.prog_sphere['effect1_amnt_A'].value = hybrid_amnts_A[0]
         self.prog_sphere['effect2_amnt_A'].value = hybrid_amnts_A[1]
         self.prog_sphere['effect3_amnt_A'].value = hybrid_amnts_A[2]
         self.prog_sphere['effect1_amnt_B'].value = hybrid_amnts_B[0]
         self.prog_sphere['effect2_amnt_B'].value = hybrid_amnts_B[1]
         self.prog_sphere['effect3_amnt_B'].value = hybrid_amnts_B[2]
-
         self.vao_sphere.render()
 
+        # Postproceso
         self.ctx.screen.use()
         self.ctx.clear()
         self.fbo.color_attachments[0].use(location=0)
@@ -498,7 +466,7 @@ class SphereSimulator:
         self.vao_post.render(moderngl.TRIANGLE_STRIP)
 
     def terminate(self):
-        """Releases all ModernGL resources."""
+        """Limpia los recursos de GLFW."""
         self.ctx.release()
         self.fbo.release()
         self.prog_sphere.release()
@@ -506,18 +474,10 @@ class SphereSimulator:
         self.vao_sphere.release()
         self.vao_post.release()
 
-def key_callback(window, key, scancode, action, mods):
-    """
-    GLFW keyboard callback to handle user input.
-    """
-    if key == glfw.KEY_ENTER and action == glfw.PRESS:
-        global simulator
-        if simulator:
-            simulator.start_next_transition()
 
 def start_glfw_simulation(emotions_list):
     """
-    Function that initializes and runs the sphere simulation loop.
+    Función que inicializa y ejecuta el bucle de simulación de la esfera.
     """
     if not glfw.init():
         return
@@ -534,80 +494,45 @@ def start_glfw_simulation(emotions_list):
         return
 
     glfw.make_context_current(window)
-    glfw.set_key_callback(window, key_callback)
 
-    global simulator
     simulator = SphereSimulator(window, width, height, emotions_list=emotions_list)
     
+    # Inicia la primera transición si hay emociones en la lista
+    if emotions_list:
+        simulator.start_next_transition()
+
     while not glfw.window_should_close(window):
         now = time.time()
-        simulator.render(now)
-        glfw.swap_buffers(window)
-        glfw.poll_events()
-
-    simulator.terminate()
-    glfw.terminate()
-
-    def terminate(self):
-        """Releases all ModernGL resources."""
-        self.ctx.release()
-        self.fbo.release()
-        self.prog_sphere.release()
-        self.prog_post.release()
-        self.vao_sphere.release()
-        self.vao_post.release()
-
-def key_callback(window, key, scancode, action, mods):
-    """
-    GLFW keyboard callback to handle user input.
-    """
-    if key == glfw.KEY_ENTER and action == glfw.PRESS:
-        global simulator
-        if simulator:
+        
+        # Lógica de input
+        if glfw.get_key(window, glfw.KEY_ENTER) == glfw.PRESS and not simulator.is_transitioning:
             simulator.start_next_transition()
 
-def start_glfw_simulation(emotions_list):
-    """
-    Function that initializes and runs the sphere simulation loop.
-    """
-    if not glfw.init():
-        return
-    
-    width, height = 1280, 720
-    glfw.window_hint(glfw.CONTEXT_VERSION_MAJOR, 3)
-    glfw.window_hint(glfw.CONTEXT_VERSION_MINOR, 3)
-    glfw.window_hint(glfw.OPENGL_PROFILE, glfw.OPENGL_CORE_PROFILE)
-    glfw.window_hint(glfw.OPENGL_FORWARD_COMPAT, glfw.TRUE)
-
-    window = glfw.create_window(width, height, "Deformable Sphere Simulator", None, None)
-    if not window:
-        glfw.terminate()
-        return
-
-    glfw.make_context_current(window)
-    glfw.set_key_callback(window, key_callback)
-
-    global simulator
-    simulator = SphereSimulator(window, width, height, emotions_list=emotions_list)
-    
-    while not glfw.window_should_close(window):
-        now = time.time()
         simulator.render(now)
         glfw.swap_buffers(window)
         glfw.poll_events()
 
     simulator.terminate()
     glfw.terminate()
+
 
 def main():
     """
     Main function that orchestrates the program's execution.
     """
-    app = InterfaceApp()
-    app.mainloop()
+    # app = InterfaceApp()
+    # app.mainloop()
 
-    if app.simulation_parameters_list:
-        start_glfw_simulation(app.simulation_parameters_list)
+    # if app.simulation_parameters_list:
+    #     start_glfw_simulation(app.simulation_parameters_list)
+
+    example_emotions = [
+        {'name': 'Calma', 'color': (0.2, 0.5, 1.0), 'velocidad': 1.0, 'rugosidad': 5.0, 'distorsion': 0.05, 'wave_direction': 0, 'deform_mode': 0},
+        {'name': 'Alegría', 'color': (1.0, 0.8, 0.0), 'velocidad': 8.0, 'rugosidad': 15.0, 'distorsion': 0.2, 'wave_direction': 1, 'deform_mode': 1},
+        {'name': 'Enojo', 'color': (1.0, 0.1, 0.1), 'velocidad': 12.0, 'rugosidad': 25.0, 'distorsion': 0.5, 'wave_direction': 2, 'deform_mode': 2},
+        {'name': 'Confusión', 'color': (0.5, 0.5, 0.5), 'velocidad': 5.0, 'rugosidad': 10.0, 'distorsion': 0.1, 'wave_direction': 0, 'deform_mode': 3, 'hybrid_amnts': [0.5, 0.5, 0.0]},
+    ]
+    start_glfw_simulation(example_emotions)
 
 if __name__ == "__main__":
     simulator = None

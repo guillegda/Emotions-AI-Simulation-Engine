@@ -134,7 +134,8 @@ class SphereSimulator:
         if glfw.get_key(self.window, glfw.KEY_4) == glfw.PRESS:
             new_mode = 3
 
-        if new_mode != -1 and new_mode != self.deform_mode_A and not self.is_transitioning:
+        if new_mode != -1 and not self.is_transitioning:# and new_mode != self.deform_mode_A:
+            print(f"Cambiando al modo de deformación {new_mode}")
             self.deform_mode_B = new_mode
             self.is_transitioning = True
             self.transition_start_time = now
