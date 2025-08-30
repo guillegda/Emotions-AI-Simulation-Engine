@@ -1,6 +1,15 @@
 import os
-import google.generativeai as genai
-from dotenv import load_dotenv
+import customtkinter as ctk
+# Importa la clase del cliente de la API de Gemini.
+# NOTA: Asegúrate de que tu archivo `gemini_client.py` esté en la misma carpeta.
+# También necesitarás el archivo `.env` con tu clave de API.
+try:
+    import google.generativeai as genai
+    from dotenv import load_dotenv
+    _has_gemini_client = True
+except ImportError:
+    _has_gemini_client = False
+    print("Warning: `google.generativeai` or `python-dotenv` are not installed. API functionality will not be available.")
 
 prefix_prompt = """
 Este servicio está pensado para ayudar a las personas a que no haya buena comprensión de las emociones.
@@ -39,18 +48,26 @@ Siempre deben aparecer los campos: {fragmento, tipo1, intensidad1, tipo2, intens
 Si un fragmento tiene más de 2 tipos de emociones dividelo para que cada fragmento solo tenga 2 emociones a la vez como máximo.
 \n
 """
-
+ctk.set_appearance_mode("System")
+ctk.set_default_color_theme("blue")
 class GeminiClient:
+    """
+    Class that interacts with the Gemini API for emotion analysis.
+    """
     def __init__(self, model_name: str = "gemini-1.5-flash-latest"):
+        if not _has_gemini_client:
+            raise ImportError("The necessary modules for GeminiClient are not installed.")
+        
         load_dotenv()
         api_key = os.getenv("GOOGLE_API_KEY")
 
         if not api_key:
-            raise EnvironmentError(
-                "Error: La variable de entorno GOOGLE_API_KEY no está configurada.\n"
-                "Por favor, establece la variable en tu archivo .env o en el sistema."
-            )
-
+            # In this execution environment, it may not be possible to read
+            # environment variables. The key can be configured directly here.
+            # api_key = "YOUR_API_KEY_HERE"
+            # Or leave it empty so the Canvas environment provides it automatically.
+            api_key = ""
+        
         genai.configure(api_key=api_key)
         self.model = genai.GenerativeModel(model_name=model_name)
 
@@ -60,10 +77,4 @@ class GeminiClient:
             response = self.model.generate_content(texto_context)
             return response.text
         except Exception as e:
-            return f"Error durante la generación de contenido: {e}"
-
-if __name__ == "__main__":
-    cliente = GeminiClient()
-    resultado = cliente.consultar("¿Quién descubrió América?")
-    print("\nRespuesta de Gemini:")
-    print(resultado)
+            return f"Error during content generation: {e}"
