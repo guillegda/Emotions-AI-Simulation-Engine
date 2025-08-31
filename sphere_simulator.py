@@ -106,7 +106,7 @@ class SphereSimulator:
             self.params_B = self.emotions_list[self.current_index].copy()
             self.is_transitioning = True
             self.transition_start_time = time.time()
-            print(f"[INFO] Iniciando transición a la emoción {self.current_index + 1}: {self.params_B.get('name', 'N/A')}")
+            print(f"[INFO] Iniciando transición a la emoción {self.current_index + 1}: {self.params_B.get('emocion1', 'N/A')}")
             self.current_index += 1
         else:
             print("[INFO] Se ha alcanzado el final de la lista de emociones.")
@@ -171,7 +171,7 @@ class SphereSimulator:
         self.prog_sphere['view'].write(self.view.astype('f4').tobytes())
         self.prog_sphere['projection'].write(self.projection.astype('f4').tobytes())
         self.prog_sphere['base_color'].value = base_color_current
-        self.prog_sphere['light_color1'].value = contrast_color_current#self.light_color1
+        self.prog_sphere['light_color1'].value = (0.99, 0.99, 0.99)#self.light_color1
         self.prog_sphere['light_color2'].value = contrast_color_current
         self.prog_sphere['deform_mode_A'].value = int(self.params_A.get('deform_mode', 0))
         self.prog_sphere['deform_mode_B'].value = int(self.params_B.get('deform_mode', 0))

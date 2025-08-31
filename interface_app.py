@@ -7,30 +7,30 @@ import json
 # to avoid dependency on external files.
 emotions_params_json_str = """
 [
-  { "Serenidad": { "color": "#ADD8E6", "velocidad": 5.2, "rugosidad": 10.1, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Alegría": { "color": "#FFD700", "velocidad": 5.6, "rugosidad": 10.3, "distorsion": 0.2, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Éxtasis": { "color": "#FF0392", "velocidad": 5.0, "rugosidad": 10.8, "distorsion": 0.9, "wave_direction": 2 , "deform_mode": 2 } },
-  { "Aceptación": { "color": "#9ACD32", "velocidad": 5.3, "rugosidad": 10.2, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Confianza": { "color": "#4682B4", "velocidad": 5.5, "rugosidad": 10.2, "distorsion": 0.1, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Admiración": { "color": "#f797f7", "velocidad": 5.4, "rugosidad": 10.3, "distorsion": 0.2, "wave_direction": 2 , "deform_mode": 2 } },
-  { "Aprensión": { "color": "#abbd6b", "velocidad": 5.5, "rugosidad": 10.6, "distorsion": 0.6, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Miedo": { "color": "#736785", "velocidad": 5.7, "rugosidad": 10.8, "distorsion": 0.7, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Terror": { "color": "#30223b", "velocidad": 5.0, "rugosidad": 11.0, "distorsion": 1.0, "wave_direction": 2 , "deform_mode": 2 } },
-  { "Distracción": { "color": "#b1fce4", "velocidad": 5.3, "rugosidad": 10.4, "distorsion": 0.5, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Sorpresa": { "color": "#FFFF00", "velocidad": 5.8, "rugosidad": 10.7, "distorsion": 0.9, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Asombro": { "color": "#2ef2e8", "velocidad": 5.9, "rugosidad": 10.8, "distorsion": 0.8, "wave_direction": 2 , "deform_mode": 2 } },
-  { "Melancolía": { "color": "#9ba4e8", "velocidad": 5.2, "rugosidad": 10.4, "distorsion": 0.3, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Tristeza": { "color": "#435fba", "velocidad": 5.1, "rugosidad": 10.3, "distorsion": 0.2, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Pena": { "color": "#202059", "velocidad": 5.1, "rugosidad": 10.2, "distorsion": 0.1, "wave_direction": 2 , "deform_mode": 2 } },
-  { "Aburrimiento": { "color": "#9eaeb0", "velocidad": 5.1, "rugosidad": 10.1, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Asco": { "color": "#556B2F", "velocidad": 5.6, "rugosidad": 10.8, "distorsion": 0.8, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Odio": { "color": "#57122e", "velocidad": 5.8, "rugosidad": 10.9, "distorsion": 0.9, "wave_direction": 2 , "deform_mode": 2 } },
-  { "Enfado": { "color": "#DC143C", "velocidad": 5.7, "rugosidad": 10.8, "distorsion": 0.7, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Ira": { "color": "#a60a0a", "velocidad": 5.9, "rugosidad": 10.9, "distorsion": 0.8, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Furia": { "color": "#b00505", "velocidad": 5.0, "rugosidad": 11.0, "distorsion": 1.0, "wave_direction": 2 , "deform_mode": 2 } },
-  { "Interés": { "color": "#20B2AA", "velocidad": 5.4, "rugosidad": 10.3, "distorsion": 0.2, "wave_direction": 0 , "deform_mode": 0 } },
-  { "Anticipación": { "color": "#FFA500", "velocidad": 5.6, "rugosidad": 10.5, "distorsion": 0.4, "wave_direction": 1 , "deform_mode": 1 } },
-  { "Vigilancia": { "color": "#ff8c00", "velocidad": 5.7, "rugosidad": 10.6, "distorsion": 0.5, "wave_direction": 2 , "deform_mode": 2 } }
+  { "Serenidad": { "color": "#ADD8E6", "velocidad": 5.2, "rugosidad": 10.1, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 0, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Alegría": { "color": "#FFD700", "velocidad": 5.6, "rugosidad": 10.3, "distorsion": 0.2, "wave_direction": 1 , "deform_mode": 1, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Éxtasis": { "color": "#FF0392", "velocidad": 5.0, "rugosidad": 10.8, "distorsion": 0.9, "wave_direction": 2 , "deform_mode": 2, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Aceptación": { "color": "#9ACD32", "velocidad": 5.3, "rugosidad": 10.2, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 0, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Confianza": { "color": "#4682B4", "velocidad": 5.5, "rugosidad": 10.2, "distorsion": 0.1, "wave_direction": 1 , "deform_mode": 1, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Admiración": { "color": "#f797f7", "velocidad": 5.4, "rugosidad": 10.3, "distorsion": 0.2, "wave_direction": 2 , "deform_mode": 2, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Aprensión": { "color": "#abbd6b", "velocidad": 5.5, "rugosidad": 10.6, "distorsion": 0.6, "wave_direction": 0 , "deform_mode": 0, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Miedo": { "color": "#736785", "velocidad": 5.7, "rugosidad": 10.8, "distorsion": 0.7, "wave_direction": 1 , "deform_mode": 1, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Terror": { "color": "#30223b", "velocidad": 5.0, "rugosidad": 11.0, "distorsion": 1.0, "wave_direction": 2 , "deform_mode": 2, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Distracción": { "color": "#b1fce4", "velocidad": 5.3, "rugosidad": 10.4, "distorsion": 0.5, "wave_direction": 0 , "deform_mode": 0, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Sorpresa": { "color": "#FFFF00", "velocidad": 5.8, "rugosidad": 10.7, "distorsion": 0.9, "wave_direction": 1 , "deform_mode": 1, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Asombro": { "color": "#2ef2e8", "velocidad": 5.9, "rugosidad": 10.8, "distorsion": 0.8, "wave_direction": 2 , "deform_mode": 2, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Melancolía": { "color": "#9ba4e8", "velocidad": 5.2, "rugosidad": 10.4, "distorsion": 0.3, "wave_direction": 0 , "deform_mode": 0, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Tristeza": { "color": "#435fba", "velocidad": 5.1, "rugosidad": 10.3, "distorsion": 0.2, "wave_direction": 1 , "deform_mode": 1, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Pena": { "color": "#202059", "velocidad": 5.1, "rugosidad": 10.2, "distorsion": 0.1, "wave_direction": 2 , "deform_mode": 2, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Aburrimiento": { "color": "#9eaeb0", "velocidad": 5.1, "rugosidad": 10.1, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 0, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Asco": { "color": "#556B2F", "velocidad": 5.6, "rugosidad": 10.8, "distorsion": 0.8, "wave_direction": 1 , "deform_mode": 1, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Odio": { "color": "#57122e", "velocidad": 5.8, "rugosidad": 10.9, "distorsion": 0.9, "wave_direction": 2 , "deform_mode": 2, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Enfado": { "color": "#DC143C", "velocidad": 5.7, "rugosidad": 10.8, "distorsion": 0.7, "wave_direction": 0 , "deform_mode": 0, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Ira": { "color": "#a60a0a", "velocidad": 5.9, "rugosidad": 10.9, "distorsion": 0.8, "wave_direction": 1 , "deform_mode": 1, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Furia": { "color": "#b00505", "velocidad": 5.0, "rugosidad": 11.0, "distorsion": 1.0, "wave_direction": 2 , "deform_mode": 2, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Interés": { "color": "#20B2AA", "velocidad": 5.4, "rugosidad": 10.3, "distorsion": 0.2, "wave_direction": 0 , "deform_mode": 0, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Anticipación": { "color": "#FFA500", "velocidad": 5.6, "rugosidad": 10.5, "distorsion": 0.4, "wave_direction": 1 , "deform_mode": 1, "hybrid_amnts": [0.5, 0.5, 0.0] } },
+  { "Vigilancia": { "color": "#ff8c00", "velocidad": 5.7, "rugosidad": 10.6, "distorsion": 0.5, "wave_direction": 2 , "deform_mode": 2, "hybrid_amnts": [0.5, 0.5, 0.0] } }
 ]
 """
 ctk.set_appearance_mode("System")
@@ -141,7 +141,8 @@ class InterfaceApp(ctk.CTk):
                         'wave_direction': params1['wave_direction'],
                         'color1': hex_to_rgb(params1['color']),
                         'color2': hex_to_rgb(params1['color']),
-                        'deform_mode': params1['deform_mode']
+                        'deform_mode1': params1['deform_mode'],
+                        'deform_mode2': params1['deform_mode']
                     }
                     
                     # Handling of combined emotions and matiz (tint)
@@ -156,6 +157,7 @@ class InterfaceApp(ctk.CTk):
                         #     (hex_to_rgb(params1['color'])[2] + hex_to_rgb(params2['color'])[2]) / 2.0
                         # )
                         final_params['color2'] = hex_to_rgb(params2['color'])
+                        final_params['deform_mode2'] = params2['deform_mode']
 
                     
                     if matiz and matiz != "None":
@@ -198,5 +200,5 @@ def load_emotions_from_json_string(json_str: str) -> dict:
 def hex_to_rgb(hex_color):
     """Converts a hex color string to an RGB tuple (0-1)."""
     hex_color = hex_color.lstrip('#')
-    return tuple(int(hex_color[i:i+2], 16) / 255.0 for i in (0, 2, 4))
+    return tuple(round(int(hex_color[i:i+2], 16) / 255.0, 2) for i in (0, 2, 4))
 
