@@ -156,7 +156,7 @@ class SphereSimulator:
         rugosidad_current = get_param('rugosidad', 10.0)
         distorsion_current = get_param('distorsion', 0.1)
         wave_direction_current = get_param('wave_direction', 0)
-        base_color_current = get_param('color1', (1.0, 1.0, 1.0), is_vector=True)
+        base_color_current = (0.5, 0.5, 0.5)#get_param('color1', (1.0, 1.0, 1.0), is_vector=True)
         contrast_color_current = get_param('color2', self.light_color2, is_vector=True)
         hybrid_amnts_A = self.params_A.get('hybrid_amnts', [0.0, 0.0, 0.0])
         hybrid_amnts_B = self.params_B.get('hybrid_amnts', [0.0, 0.0, 0.0])
@@ -171,7 +171,7 @@ class SphereSimulator:
         self.prog_sphere['view'].write(self.view.astype('f4').tobytes())
         self.prog_sphere['projection'].write(self.projection.astype('f4').tobytes())
         self.prog_sphere['base_color'].value = base_color_current
-        self.prog_sphere['light_color1'].value = (0.99, 0.99, 0.99)#self.light_color1
+        self.prog_sphere['light_color1'].value = get_param('color2', self.light_color1, is_vector=True)
         self.prog_sphere['light_color2'].value = contrast_color_current
         self.prog_sphere['deform_mode_A'].value = int(self.params_A.get('deform_mode', 0))
         self.prog_sphere['deform_mode_B'].value = int(self.params_B.get('deform_mode', 0))

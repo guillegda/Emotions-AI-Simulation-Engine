@@ -23,3 +23,7 @@ No necesitas hacer parsing manual como con .txt o .obj.
 Compacto: más pequeño que CSV o texto plano para arrays grandes.
 
 Seguro para estructuras grandes como mallas 3D.
+
+
+Rugosidad: cuantas arrugas o deformaciones le salen
+Distorsion: si esas arrugas son muy pronunciadas, si se contraen y expanden mucho
