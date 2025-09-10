@@ -7,30 +7,37 @@ import json
 # to avoid dependency on external files.
 emotions_params_json_str = """
 [
-  { "Serenidad": { "color": [0.80, 0.60, 0.30], "velocidad": 5.15, "rugosidad": 3.25, "distorsion": 0.1, "wave_direction": 2 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.9, 0.0] } },
-  { "Alegría": { "color": [0.90, 0.70, 0.30], "velocidad": 10.15, "rugosidad": 7.25, "distorsion": 0.1, "wave_direction": 2 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.9, 0.0] } },
-  { "Éxtasis": { "color": [0.99, 0.65, 0.20], "velocidad": 12.15, "rugosidad": 10.25, "distorsion": 0.1, "wave_direction": 2 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.9, 0.05] } },
-  { "Aceptación": { "color": [0.70, 0.90, 0.60], "velocidad": 2.15, "rugosidad": 5.25, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 3, "hybrid_amnts": [0.1, 0.9, 0.0] } },
-  { "Confianza": { "color": [0.70, 0.99, 0.60], "velocidad": 3.15, "rugosidad": 8.25, "distorsion": 0.15, "wave_direction": 0 , "deform_mode": 3, "hybrid_amnts": [0.3, 0.9, 0.0] } },
-  { "Admiración": { "color": [0.7, 0.99, 0.60], "velocidad": 4.15, "rugosidad": 8.25, "distorsion": 0.2, "wave_direction": 0 , "deform_mode": 3, "hybrid_amnts": [0.5, 0.9, 0.0] } },
-  { "Aprensión": { "color": [0.70, 0.90, 0.70], "velocidad": 3.15, "rugosidad": 1.25, "distorsion": 0.1, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.5, 0.1, 0.5] } },
-  { "Miedo": { "color": [0.60, 0.90, 0.60], "velocidad": 5.15, "rugosidad": 1.25, "distorsion": 0.2, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.5, 0.1, 0.7] } },
-  { "Terror": { "color": [0.50, 0.90, 0.50], "velocidad": 7.15, "rugosidad": 1.25, "distorsion": 0.2, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.5, 0.1, 0.9] } },
-  { "Distracción": { "color": [0.50, 0.80, 0.80], "velocidad": 3.15, "rugosidad": 5.25, "distorsion": 0.002, "wave_direction": 2 , "deform_mode": 3, "hybrid_amnts": [8.0, 0.0, 5.0] } },
-  { "Sorpresa": { "color": [0.40, 0.90, 0.80], "velocidad": 5.15, "rugosidad": 5.25, "distorsion": 0.008, "wave_direction": 2 , "deform_mode": 3, "hybrid_amnts": [8.0, 0.0, 5.0] } },
-  { "Asombro": { "color": [0.40, 0.99, 0.80], "velocidad": 7.15, "rugosidad": 5.25, "distorsion": 0.01, "wave_direction": 2 , "deform_mode": 3, "hybrid_amnts": [8.0, 0.0, 5.0] } },
-  { "Melancolía": { "color": [0.40, 0.40, 0.90], "velocidad": 0.25, "rugosidad": 1.0, "distorsion": 0.01, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.0, 0.0, 5.0] } },
-  { "Tristeza": { "color": [0.25, 0.25, 0.90], "velocidad": 0.5, "rugosidad":  1.5, "distorsion": 0.01, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.0, 0.0, 5.0] } },
-  { "Pena": { "color": [0.10, 0.10, 0.90], "velocidad": 1.1, "rugosidad": 2.25, "distorsion": 0.01, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.0, 0.0, 5.0] } },
+  { "Serenidad": { "color": [1.2, 0.90, 0.30], "velocidad": 5.15, "rugosidad": 3.25, "distorsion": 0.1, "wave_direction": 2 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.9, 0.0] } },
+  { "Alegría": { "color": [1.30, 1.10, 0.30], "velocidad": 10.15, "rugosidad": 7.25, "distorsion": 0.1, "wave_direction": 2 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.9, 0.0] } },
+  { "Éxtasis": { "color": [1.59, 1.25, 0.20], "velocidad": 12.15, "rugosidad": 10.25, "distorsion": 0.1, "wave_direction": 2 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.9, 0.05] } },
+  
+  { "Aceptación": { "color": [1.0, 1.30, 0.80], "velocidad": 2.15, "rugosidad": 5.25, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 3, "hybrid_amnts": [0.1, 0.9, 0.0] } },
+  { "Confianza": { "color": [1.15, 1.50, 0.70], "velocidad": 3.15, "rugosidad": 8.25, "distorsion": 0.15, "wave_direction": 0 , "deform_mode": 3, "hybrid_amnts": [0.3, 0.9, 0.0] } },
+  { "Admiración": { "color": [1.2, 1.60, 0.60], "velocidad": 4.15, "rugosidad": 8.25, "distorsion": 0.2, "wave_direction": 0 , "deform_mode": 3, "hybrid_amnts": [0.5, 0.9, 0.0] } },
+  
+  { "Aprensión": { "color": [0.4, 1.20, 0.70], "velocidad": 3.15, "rugosidad": 1.25, "distorsion": 0.1, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.5, 0.1, 0.5] } },
+  { "Miedo": { "color": [0.4, 1.30, 0.60], "velocidad": 5.15, "rugosidad": 1.25, "distorsion": 0.2, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.5, 0.1, 0.7] } },
+  { "Terror": { "color": [0.4, 1.50, 0.50], "velocidad": 7.15, "rugosidad": 1.25, "distorsion": 0.2, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.5, 0.1, 0.9] } },
+  
+  { "Distracción": { "color": [0.80, 1.30, 1.30], "velocidad": 3.15, "rugosidad": 5.25, "distorsion": 0.002, "wave_direction": 2 , "deform_mode": 3, "hybrid_amnts": [8.0, 0.0, 5.0] } },
+  { "Sorpresa": { "color": [0.50, 1.30, 1.30], "velocidad": 5.15, "rugosidad": 5.25, "distorsion": 0.008, "wave_direction": 2 , "deform_mode": 3, "hybrid_amnts": [8.0, 0.0, 5.0] } },
+  { "Asombro": { "color": [0.20, 1.50, 1.30], "velocidad": 7.15, "rugosidad": 5.25, "distorsion": 0.01, "wave_direction": 2 , "deform_mode": 3, "hybrid_amnts": [8.0, 0.0, 5.0] } },
+  
+  { "Melancolía": { "color": [0.80, 0.80, 1.50], "velocidad": 0.25, "rugosidad": 1.0, "distorsion": 0.01, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.0, 0.0, 5.0] } },
+  { "Tristeza": { "color": [0.45, 0.45, 1.50], "velocidad": 0.5, "rugosidad":  1.5, "distorsion": 0.01, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.0, 0.0, 5.0] } },
+  { "Pena": { "color": [0.10, 0.10, 1.50], "velocidad": 1.1, "rugosidad": 2.25, "distorsion": 0.01, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.0, 0.0, 5.0] } },
+  
   { "Aburrimiento": { "color": [0.50, 0.40, 0.70], "velocidad": 1.15, "rugosidad": 10.25, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.0, 0.0] } },
-  { "Asco": { "color": [0.50, 0.25, 0.80], "velocidad": 2.15, "rugosidad": 10.25, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.0, 0.5] } },
-  { "Odio": { "color": [0.50, 0.10, 0.90], "velocidad": 5.15, "rugosidad": 10.25, "distorsion": 0.05, "wave_direction": 0 , "deform_mode": 3, "hybrid_amnts": [1.1, 0.0, 1.0] } },
-  { "Enfado": { "color": [0.90, 0.60, 0.60], "velocidad": 5.15, "rugosidad": 5.25, "distorsion": 0.005, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.1, 5.0] } },
-  { "Ira": { "color": [0.90, 0.40, 0.40], "velocidad": 7.15, "rugosidad": 5.25, "distorsion": 0.01, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.1, 5.0] } },
-  { "Furia": { "color": [0.90, 0.20, 0.20], "velocidad": 10.15, "rugosidad": 5.25, "distorsion": 0.02, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.1, 5.0] } },
-  { "Interés": { "color": [0.80, 0.50, 0.30], "velocidad": 5.15, "rugosidad": 10.25, "distorsion": 0.1, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.1, 0.0] } },
-  { "Anticipación": { "color": [0.80, 0.40, 0.20], "velocidad": 5.15, "rugosidad": 10.25, "distorsion": 0.1, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.1, 0.0] } },
-  { "Vigilancia": { "color": [0.80, 0.40, 0.10], "velocidad": 5.15, "rugosidad": 10.25, "distorsion": 0.1, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.1, 0.05] } }
+  { "Asco": { "color": [0.80, 0.25, 1.30], "velocidad": 2.15, "rugosidad": 10.25, "distorsion": 0.1, "wave_direction": 0 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.0, 0.5] } },
+  { "Odio": { "color": [1.0, 0.10, 1.50], "velocidad": 5.15, "rugosidad": 10.25, "distorsion": 0.05, "wave_direction": 0 , "deform_mode": 3, "hybrid_amnts": [1.1, 0.0, 1.0] } },
+  
+  { "Enfado": { "color": [1.0, 0.30, 0.30], "velocidad": 5.15, "rugosidad": 5.25, "distorsion": 0.005, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.1, 5.0] } },
+  { "Ira": { "color": [1.20, 0.30, 0.30], "velocidad": 7.15, "rugosidad": 5.25, "distorsion": 0.01, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.1, 5.0] } },
+  { "Furia": { "color": [1.50, 0.20, 0.20], "velocidad": 10.15, "rugosidad": 5.25, "distorsion": 0.02, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.1, 5.0] } },
+  
+  { "Interés": { "color": [1.20, 0.70, 0.40], "velocidad": 5.15, "rugosidad": 10.25, "distorsion": 0.1, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.1, 0.0] } },
+  { "Anticipación": { "color": [1.2, 0.70, 0.20], "velocidad": 7.15, "rugosidad": 10.25, "distorsion": 0.1, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.1, 0.0] } },
+  { "Vigilancia": { "color": [1.2, 0.70, 0.05], "velocidad": 9.15, "rugosidad": 10.25, "distorsion": 0.1, "wave_direction": 1 , "deform_mode": 3, "hybrid_amnts": [0.9, 0.1, 0.05] } }
 ]
 """
 ctk.set_appearance_mode("System")

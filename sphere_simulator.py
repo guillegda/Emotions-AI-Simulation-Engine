@@ -6,7 +6,7 @@ from pyrr import Matrix44
 
 class SphereSimulator:
     """
-    Clase reutilizable para la simulación de una esfera con deformaciones
+    Clase simulación de una esfera con deformaciones
     y postproceso usando ModernGL y GLFW.
     """
     
@@ -125,8 +125,7 @@ class SphereSimulator:
 
     def render(self, now):
         """Dibuja un solo fotograma de la simulación."""
-        # Se calcula el tiempo de la simulación para la animación.
-        # Esto es crucial para que la esfera se mueva continuamente.
+        #Se va llamando en cada frame para animar la esfera
         simulation_time = now - self.start_time
 
         blend_factor = self._update_transition(now)
@@ -157,7 +156,7 @@ class SphereSimulator:
         distorsion_current = get_param('distorsion', 0.1)
         wave_direction_current = get_param('wave_direction', 0)
         base_color_current = (0.5, 0.5, 0.5)#get_param('color1', (1.0, 1.0, 1.0), is_vector=True)
-        contrast_color_current = get_param('color2', self.light_color2, is_vector=True)
+        contrast_color_current = get_param('color2', None, is_vector=True)
         hybrid_amnts_A = self.params_A.get('hybrid_amnts', [0.0, 0.0, 0.0])
         hybrid_amnts_B = self.params_B.get('hybrid_amnts', [0.0, 0.0, 0.0])
         
@@ -171,8 +170,8 @@ class SphereSimulator:
         self.prog_sphere['view'].write(self.view.astype('f4').tobytes())
         self.prog_sphere['projection'].write(self.projection.astype('f4').tobytes())
         self.prog_sphere['base_color'].value = base_color_current
-        self.prog_sphere['light_color1'].value = get_param('color2', self.light_color1, is_vector=True)
-        self.prog_sphere['light_color2'].value = contrast_color_current
+        self.prog_sphere['light_color1'].value = get_param('color1', self.light_color1, is_vector=True)
+        self.prog_sphere['light_color2'].value = contrast_color_current if contrast_color_current else get_param('color1', self.light_color1, is_vector=True)
         self.prog_sphere['deform_mode_A'].value = int(self.params_A.get('deform_mode', 0))
         self.prog_sphere['deform_mode_B'].value = int(self.params_B.get('deform_mode', 0))
         self.prog_sphere['blend_factor'].value = blend_factor
@@ -205,7 +204,7 @@ class SphereSimulator:
 
 def start_glfw_simulation(emotions_list):
     """
-    Función que inicializa y ejecuta el bucle de simulación de la esfera.
+    inicializa y ejecuta el bucle de simulación de la esfera.
     """
     if not glfw.init():
         return
