@@ -155,13 +155,7 @@ class InterfaceApp(ctk.CTk):
                     if params2:
                         # Interpolate between params1 and params2
                         for key in ['velocidad', 'rugosidad', 'distorsion']:
-                            final_params[key] = (params1[key] * 0.8) + (params2[key] * 0.2)
-                        #No se si quiero hacer una media de color
-                        # final_params['color'] = (
-                        #     (tuple(params1['color'])[0] + tuple(params2['color'])[0]) / 2.0,
-                        #     (tuple(params1['color'])[1] + tuple(params2['color'])[1]) / 2.0,
-                        #     (tuple(params1['color'])[2] + tuple(params2['color'])[2]) / 2.0
-                        # )
+                            final_params[key] = (params1[key]) + (params2[key])
                         final_params['color2'] = tuple(params2['color'])
                         final_params['deform_mode2'] = params2['deform_mode']
 
@@ -202,10 +196,4 @@ def load_emotions_from_json_string(json_str: str) -> dict:
     except json.JSONDecodeError as e:
         print(f"Error al decodificar el JSON: {e}")
         return {}
-
-# Esto lo usaba antes porque tenia los colores como cadenas de texto en formato hex    
-# def hex_to_rgb(hex_color):
-#     """Converts a hex color string to an RGB tuple (0-1)."""
-#     hex_color = hex_color.lstrip('#')
-#     return tuple(round(int(hex_color[i:i+2], 16) / 255.0, 2) for i in (0, 2, 4))
 

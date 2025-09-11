@@ -62,11 +62,7 @@ class GeminiClient:
         api_key = os.getenv("GOOGLE_API_KEY")
 
         if not api_key:
-            # In this execution environment, it may not be possible to read
-            # environment variables. The key can be configured directly here.
-            # api_key = "YOUR_API_KEY_HERE"
-            # Or leave it empty so the Canvas environment provides it automatically.
-            api_key = ""
+            api_key = "" # Replace with your actual API key if not using .env
         
         genai.configure(api_key=api_key)
         self.model = genai.GenerativeModel(model_name=model_name)
