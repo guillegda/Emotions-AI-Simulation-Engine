@@ -82,12 +82,20 @@ class InterfaceApp(ctk.CTk):
         self.text_input = ctk.CTkTextbox(self, wrap="word", font=ctk.CTkFont(size=14))
         self.text_input.grid(row=1, column=0, padx=20, pady=(0, 10), sticky="nsew")
 
+        self.will_record = ctk.StringVar(value="off") # Variable para rastrear el estado de la checkbox
+        self.my_checkbox = ctk.CTkCheckBox(self, text="Activar grabación de la simulación", variable=self.will_record, onvalue="on", offvalue="off")
+        self.my_checkbox.grid(row=2, column=0, padx=20, pady=(0, 10), sticky="w") # Ajustamos sticky para que se alinee a la izquierda
+
         self.submit_button = ctk.CTkButton(self, text="Submit", command=self.submit_text)
-        self.submit_button.grid(row=2, column=0, padx=20, pady=(0, 10))
+        self.submit_button.grid(row=3, column=0, padx=20, pady=(0, 10))
 
     def _get_params_from_emotion(self, emotion_name: str) -> dict:
         """Looks for and returns the parameters of an emotion in the data dictionary."""
         return self.emotions_data.get(emotion_name, None)
+    
+    def get_bool_record(self) -> bool:
+        """Returns True if recording is enabled, False otherwise."""
+        return self.will_record.get() == "on"
 
     def submit_text(self):
         """

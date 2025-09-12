@@ -3,6 +3,7 @@ import moderngl
 import numpy as np
 import time
 from pyrr import Matrix44
+import cv2
 
 class SphereSimulator:
     """
@@ -108,9 +109,10 @@ class SphereSimulator:
             self.transition_start_time = time.time()
             print(f"[INFO] Iniciando transición a la emoción {self.current_index + 1}: {self.params_B.get('emocion1', 'N/A')}")
             self.current_index += 1
+            return False
         else:
             print("[INFO] Se ha alcanzado el final de la lista de emociones.")
-            self.terminate()
+            return True
 
     def _update_transition(self, now):
         """Calcula el factor de mezcla para una transición suave."""
@@ -202,7 +204,7 @@ class SphereSimulator:
         self.vao_post.release()
 
 
-def start_glfw_simulation(emotions_list):
+def start_glfw_simulation(emotions_list, record_simulation: bool = False):
     """
     inicializa y ejecuta el bucle de simulación de la esfera.
     """
@@ -223,21 +225,57 @@ def start_glfw_simulation(emotions_list):
     glfw.make_context_current(window)
 
     simulator = SphereSimulator(window, width, height, emotions_list=emotions_list)
+
+    # GRABACIÓN:
+    video_writer = None
+    if record_simulation:
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        output_filename = f"simulacion_emociones_{int(time.time())}.mp4"
+        fps = 60 
+        video_writer = cv2.VideoWriter(output_filename, fourcc, fps, (width, height))
+        print(f"Iniciando grabación... guardando en '{output_filename}'")
+    #
     
-    # Inicia la primera transición si hay emociones en la lista
+    #primera transición si hay emociones en la lista
     if emotions_list:
         simulator.start_next_transition()
 
+    stop = False
     while not glfw.window_should_close(window):
         now = time.time()
         
-        # Lógica de input
+        #input
         if glfw.get_key(window, glfw.KEY_ENTER) == glfw.PRESS and not simulator.is_transitioning:
-            simulator.start_next_transition()
+            stop = simulator.start_next_transition()
+
+        if stop:
+            break
 
         simulator.render(now)
+
+        #CAPTURA Y ESCRITURA DE CADA FOTOGRAMA:
+        if video_writer:
+            #píxeles del framebuffer
+            #`self.ctx.screen` es el framebuffer principal
+            frame_bytes = simulator.ctx.screen.read(components=3, dtype='f1')
+            
+            #array de NumPy
+            frame_np = np.frombuffer(frame_bytes, dtype=np.uint8).reshape((height, width, 3))
+            
+            #píxeles se leen al revés (de abajo a arriba) y en RGB
+            #OpenCV espera BGR y el orden normal
+            frame_np = np.flip(frame_np, 0)
+            frame_np = cv2.cvtColor(frame_np, cv2.COLOR_RGB2BGR)
+
+            video_writer.write(frame_np)
+
+
         glfw.swap_buffers(window)
         glfw.poll_events()
+
+    if video_writer:
+        video_writer.release()
+        print("Grabación finalizada. Archivo guardado.")
 
     simulator.terminate()
     glfw.terminate()

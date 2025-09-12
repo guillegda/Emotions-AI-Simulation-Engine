@@ -9,7 +9,7 @@ def main():
         app.mainloop()
 
         if app.simulation_parameters_list:
-            start_glfw_simulation(app.simulation_parameters_list)
+            start_glfw_simulation(app.simulation_parameters_list, record_simulation=app.get_bool_record())
         else:
             print("No simulation parameters available. Exiting.")
             break
