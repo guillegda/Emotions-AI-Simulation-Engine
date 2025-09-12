@@ -155,24 +155,31 @@ class InterfaceApp(ctk.CTk):
                         'wave_direction': params1['wave_direction'],
                         'color1': tuple(params1['color']),
                         'color2': tuple(params1['color']),
-                        'deform_mode1': params1['deform_mode'],
-                        'deform_mode2': params1['deform_mode']
+                        'deform_mode': params1['deform_mode'],
+                        'hybrid_amnts': params1['hybrid_amnts']
                     }
                     
-                    # Handling of combined emotions and matiz (tint)
                     if params2:
-                        # Interpolate between params1 and params2
-                        for key in ['velocidad', 'rugosidad', 'distorsion']:
-                            final_params[key] = (params1[key]) + (params2[key])
+                        weight1 = 1.2 # Peso para la emoción 1
+                        weight2 = .8 # Peso para la emoción 2
+                        
+                        hybrid_amnts1 = params1.get('hybrid_amnts', [0.0, 0.0, 0.0])
+                        hybrid_amnts2 = params2.get('hybrid_amnts', [0.0, 0.0, 0.0])
+                        
+                        #q ambas listas tengan la misma longitud
+                        min_len = min(len(hybrid_amnts1), len(hybrid_amnts2))
+                        
+                        combined_hybrid_amnts = [
+                            (hybrid_amnts1[i] * weight1 + hybrid_amnts2[i] * weight2) / (weight1 + weight2)
+                            for i in range(min_len)
+                        ]
+                        
+                        final_params['hybrid_amnts'] = combined_hybrid_amnts
                         final_params['color2'] = tuple(params2['color'])
-                        final_params['deform_mode2'] = params2['deform_mode']
-
-                    
-                    if matiz and matiz != "None":
-                        matiz_params = self._get_params_from_emotion(matiz)
-                        if matiz_params:
-                            final_params['deform_mode'] = matiz_params.get('deform_mode', 0)
-                            final_params['hybrid_amnts'] = matiz_params.get('hybrid_amnts', [0.0, 0.0, 0.0])
+                        
+                        final_params['velocidad'] = (params1['velocidad'] * weight1 + params2['velocidad'] * weight2) / (weight1 + weight2)
+                        final_params['rugosidad'] = (params1['rugosidad'] * weight1 + params2['rugosidad'] * weight2) / (weight1 + weight2)
+                        final_params['distorsion'] = (params1['distorsion'] * weight1 + params2['distorsion'] * weight2) / (weight1 + weight2)
                     
                     self.simulation_parameters_list.append(final_params)
                     print(f"[DEBUG] Final params for fragment {final_params}")

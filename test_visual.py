@@ -73,6 +73,7 @@ def main():
             #  , 'emocion1': 'Furia', 'velocidad': 10.15, 'rugosidad': 5.25, 'distorsion': 0.02, 'wave_direction': 1, 'color1': (1.50, 0.20, 0.20), 'deform_mode': 3, "hybrid_amnts": [0.9, 0.1, 5.0]},
             # ##
             ##
+
             {'fragment': 'Fragmento de Interés'
              , 'emocion1': 'Interés', 'velocidad': 5.15, 'rugosidad': 10.25, 'distorsion': 0.1, 'wave_direction': 1, 'color1': (1.20, 0.70, 0.40), 'deform_mode': 3, "hybrid_amnts": [0.9, 0.1, 0.0]},
             {'fragment': 'Fragmento de Anticipación'
