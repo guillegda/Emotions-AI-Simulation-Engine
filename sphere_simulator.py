@@ -4,6 +4,9 @@ import numpy as np
 import time
 from pyrr import Matrix44
 import cv2
+import sys
+import threading
+import random  
 
 class SphereSimulator:
     """
@@ -101,17 +104,33 @@ class SphereSimulator:
         self.view = Matrix44.look_at((0.0, 0.0, 3.0), (0.0, 0.0, 0.0), (0.0, 1.0, 0.0))
 
     def start_next_transition(self):
-        """Inicia la transición al siguiente conjunto de parámetros de la lista de emociones."""
         if self.current_index < len(self.emotions_list):
             self.params_A = self.params_B.copy()
             self.params_B = self.emotions_list[self.current_index].copy()
+            
+            # Obtenemos los parámetros de la emoción
+            fragmento = self.params_B.get('fragment', 'N/A')
+            emocion1 = self.params_B.get('emocion1', 'N/A')
+            emocion2 = self.params_B.get('emocion2', 'N/A')
+            matiz = self.params_B.get('matiz', 'N/A')
+            
+            # Iniciamos un nuevo hilo para la impresión animada
+            # Pasamos los parámetros de la emoción a la función como argumentos
+            print_thread = threading.Thread(
+                target=animated_print, 
+                args=(fragmento, emocion1, emocion2, matiz)
+            )
+            print_thread.start() # ¡Esto inicia el hilo de forma no bloqueante!
+            
+            # El resto del código de transición continúa inmediatamente
             self.is_transitioning = True
             self.transition_start_time = time.time()
-            print(f"[INFO] Iniciando transición a la emoción {self.current_index + 1}: {self.params_B.get('emocion1', 'N/A')}")
             self.current_index += 1
+            
             return False
         else:
-            print("[INFO] Se ha alcanzado el final de la lista de emociones.")
+            print("\n\n" + "🎉" * 10 + " ¡Fin de la simulación! " + "🎉" * 10)
+            print("No dudes en seguir escribiendo y explorando tus emociones. 😊")
             return True
 
     def _update_transition(self, now):
@@ -211,16 +230,31 @@ def start_glfw_simulation(emotions_list, record_simulation: bool = False):
     if not glfw.init():
         return
     
-    width, height = 1280, 720
+    
+    # Configurar las sugerencias de la ventana
     glfw.window_hint(glfw.CONTEXT_VERSION_MAJOR, 3)
     glfw.window_hint(glfw.CONTEXT_VERSION_MINOR, 3)
     glfw.window_hint(glfw.OPENGL_PROFILE, glfw.OPENGL_CORE_PROFILE)
     glfw.window_hint(glfw.OPENGL_FORWARD_COMPAT, glfw.TRUE)
 
-    window = glfw.create_window(width, height, "Deformable Sphere Simulator", None, None)
+    # Obtener el monitor principal y su modo de video
+    monitor = glfw.get_primary_monitor()
+    monitor_mode = glfw.get_video_mode(monitor)
+
+    width, height = monitor_mode.size.width, monitor_mode.size.height//2
+
+    # Crear la ventana
+    window = glfw.create_window(width, height, "Emotions Visualization", None, None)
     if not window:
         glfw.terminate()
-        return
+        exit()
+
+    # Calcular las coordenadas para centrar la ventana en X y colocarla en la mitad superior en Y
+    window_x = (monitor_mode.size.width - width) // 2
+    window_y = 0
+
+    # Establecer la posición de la ventana
+    glfw.set_window_pos(window, window_x, window_y)
 
     glfw.make_context_current(window)
 
@@ -279,3 +313,107 @@ def start_glfw_simulation(emotions_list, record_simulation: bool = False):
 
     simulator.terminate()
     glfw.terminate()
+
+
+def animated_print(fragmento, emocion1, emocion2, matiz):
+    """
+    Función que maneja la impresión animada en la terminal.
+    Se ejecuta en un hilo separado para no bloquear la simulación.
+    """
+    # Puntos suspensivos animados para el "pensando..."
+    sys.stdout.write("\nAnalizando el fragmento de texto.")
+    sys.stdout.flush()
+    for _ in range(3):
+        time.sleep(0.5)
+        sys.stdout.write(".")
+        sys.stdout.flush()
+    
+    # Pausa antes de mostrar el resultado
+    time.sleep(1) 
+    
+    # Listas de opciones de mensajes
+    intro_options = [
+        "✨ ¿Te da curiosidad ver la siguiente emoción? ✨",
+        "✨ Nos llama la atención la próxima emoción✨",
+        "✨ ¿Estás listo para cómo es la siguiente emoción del texto? ✨",
+        "✨ ¡Visualizando una nueva emoción! 🚀"
+    ]
+    
+    # Se ha corregido la lógica para que los mensajes usen la variable correcta
+    emoji_list= [random.choice(EMOTION_EMOJIS.get(emocion1, 'None')),
+                 random.choice(EMOTION_EMOJIS.get(emocion1, 'None')),
+                 random.choice(EMOTION_EMOJIS.get(emocion1, 'None')),
+                 random.choice(EMOTION_EMOJIS.get(emocion2, 'None')),
+                 random.choice(EMOTION_EMOJIS.get(emocion2, 'None')),
+                 random.choice(EMOTION_EMOJIS.get(emocion2, 'None'))]
+    main_emotions_options = [
+        f"{emoji_list[0]} Creemos que la emoción principal de tu texto es {emocion1}. {emoji_list[1]}",
+        f"{emoji_list[0]} {emocion1} es lo primero que se nos viene a la mente al leerlo. {emoji_list[1]}",
+        f"{emoji_list[0]} Posiblemente sientas bastante {emocion1}. {emoji_list[1]}",
+        f"{emoji_list[0]} Principalmente {emocion1} es la emoción que se transmite. {emoji_list[1]}"
+    ]
+
+    secondary_emotions_options = [
+        f"{emoji_list[3]} Con una pizca de {emocion2} {emoji_list[4]}",
+        f"{emoji_list[3]} Mezclado con {emocion2} posiblemente {emoji_list[4]}",
+        f"{emoji_list[3]} Pero también un poco de {emocion2} {emoji_list[4]}",
+        f"{emoji_list[3]} Y un toque de {emocion2} {emoji_list[4]}"
+    ]
+
+    matiz_messages_options = [
+        f"{emoji_list[2]} resultando en {matiz}{emoji_list[5]}",
+        f"{emoji_list[2]} obteniendo un matiz {matiz}{emoji_list[5]}",
+        f"{emoji_list[2]} según la rueda de las emociones, esta combinación es {matiz}{emoji_list[5]}",
+        f"{emoji_list[2]} consiguiendo una nueva emoción compleja {matiz}{emoji_list[5]}"
+    ]
+
+    # Mensajes
+    messages = [
+        random.choice(intro_options),
+        f"📖 En el fragmento de texto donde dices '{fragmento}'",
+        random.choice(main_emotions_options)
+    ]
+    
+    if emocion2 and emocion2.lower() not in ["none", "ninguno"]:
+        messages.append(random.choice(secondary_emotions_options))
+    
+    if matiz and matiz.lower() not in ["none", "ninguno"]:
+        messages.append(random.choice(matiz_messages_options))
+        
+    for msg in messages:
+        for char in msg:
+            sys.stdout.write(char)
+            sys.stdout.flush()
+            time.sleep(0.02)
+        sys.stdout.write("\n")
+    
+    sys.stdout.write("✨" * 40 + "\n\n")
+    sys.stdout.flush()
+
+EMOTION_EMOJIS = {
+    "Serenidad": ["😌", "🧘", "✨"],
+    "Alegría": ["😄", "🥳", "🎉"],
+    "Éxtasis": ["🤩", "💫", "💖"],
+    "Aceptación": ["😊", "🤝", "👌"],
+    "Confianza": ["💪", "💯", "🛡️"],
+    "Admiración": ["😮", "👏", "🤩"],
+    "Aprensión": ["😬", "😥", "😨"],
+    "Miedo": ["😱", "😰", "👻"],
+    "Terror": ["😨", "💀", "👹"],
+    "Distracción": ["🤔", "🤨", "🤷"],
+    "Sorpresa": ["😲", "😮", "😳"],
+    "Asombro": ["🤯", "✨", "😮"],
+    "Melancolía": ["😔", "🍂", "🌧️"],
+    "Tristeza": ["😢", "😭", "💔"],
+    "Pena": ["😥", "😔", "😢"],
+    "Aburrimiento": ["🥱", "😑", "💤"],
+    "Asco": ["🤢", "🤮", "😖"],
+    "Odio": ["😡", "😠", "👿"],
+    "Enfado": ["😤", "💢", "😡"],
+    "Ira": ["🤬", "🔥", "💥"],
+    "Furia": ["👹", "🌋", "🤯"],
+    "Interés": ["🧐", "👀", "💡"],
+    "Anticipación": ["⏳", "🔍", "👀"],
+    "Vigilancia": ["🚨", "👀", "🕵️"],
+    "None": ["❓", "❔", "❓"]
+}

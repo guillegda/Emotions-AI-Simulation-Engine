@@ -1,5 +1,6 @@
 import os
 import customtkinter as ctk
+import time
 # Importa la clase del cliente de la API de Gemini.
 # NOTA: Asegúrate de que tu archivo `gemini_client.py` esté en la misma carpeta.
 # También necesitarás el archivo `.env` con tu clave de API.
@@ -54,7 +55,8 @@ class GeminiClient:
     """
     Class that interacts with the Gemini API for emotion analysis.
     """
-    def __init__(self, model_name: str = "gemini-1.5-flash-latest"):
+    #def __init__(self, model_name: str = "gemini-1.5-flash-latest"):
+    def __init__(self, model_name: str = "gemini-2.0-flash-lite"):
         if not _has_gemini_client:
             raise ImportError("The necessary modules for GeminiClient are not installed.")
         
@@ -74,3 +76,30 @@ class GeminiClient:
             return response.text
         except Exception as e:
             return f"Error during content generation: {e}"
+    def test(self, textos: list[str]):
+        """
+        Calculates the number of characters and the execution time for
+        the 'consultar' method for each string in a given list.
+
+        Args:
+            textos (list[str]): A list of strings to be tested.
+
+        Returns:
+            list[tuple[int, float]]: A list of tuples where each tuple contains
+                                      the character count and the execution time in seconds.
+        """
+        results = []
+        for texto in textos:
+            start_time = time.time()
+            print(texto[:50])  # Print the first 50 characters of the text
+            respuesta = self.consultar(texto)
+            print(respuesta)  # Llamada al método
+            end_time = time.time()
+            
+            character_count = len(texto)
+            execution_time = end_time - start_time
+            print(f"Processed {character_count} characters in {execution_time:.4f} seconds.")
+            
+            results.append((character_count, execution_time))
+            
+        return results

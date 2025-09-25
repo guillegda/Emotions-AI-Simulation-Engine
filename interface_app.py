@@ -66,17 +66,31 @@ class InterfaceApp(ctk.CTk):
                 raise ValueError("Emotion data is empty or malformed.")
         except (json.JSONDecodeError, IndexError, ValueError) as e:
             messagebox.showerror("Error", f"Error loading emotion data.\nDetails: {e}")
+            self.after_cancel_all()
             self.destroy()
 
-        self.title("Configuration Interface")
-        self.geometry("600x500")
-        self.minsize(400, 300)
+        self.title("Interfaz de Usuario - Detección de Emociones")
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+
+        # Calcular el tamaño de la ventana (mitad superior de la pantalla)
+        window_width = screen_width
+        window_height = screen_height // 2
+
+        # Calcular la posición (centrada en el eje x, en la parte superior del eje y)
+        x_position = 0
+        y_position = 0
+
+        # Establecer la geometría de la ventana
+        self.geometry(f"{window_width}x{window_height}+{x_position}+{y_position}")
+        #self.geometry("1280x720")
+        #self.minsize(800, 600)
 
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(1, weight=1)
         self.last_submitted_text = ""
 
-        self.label = ctk.CTkLabel(self, text="Enter your text:", font=ctk.CTkFont(size=16))
+        self.label = ctk.CTkLabel(self, text="Habla sobre tu experiencia personal:", font=ctk.CTkFont(size=16))
         self.label.grid(row=0, column=0, padx=20, pady=(20, 5), sticky="w")
 
         self.text_input = ctk.CTkTextbox(self, wrap="word", font=ctk.CTkFont(size=14))
@@ -110,7 +124,7 @@ class InterfaceApp(ctk.CTk):
                 self.text_input.update()
                 
                 json_response = self.client.consultar(user_text)
-                print(f"[DEBUG] Raw JSON response from API:\n{json_response}")
+                #print(f"[DEBUG] Raw JSON response from API:\n{json_response}")
 
                 start_index = json_response.find('{')
                 end_index = json_response.rfind('}')
@@ -119,7 +133,7 @@ class InterfaceApp(ctk.CTk):
                 clean_json_string = clean_json_string.replace('}{', '},{')
                 clean_json_string = clean_json_string.replace(';', ',')
 
-                print(f"[DEBUG] Clean JSON response:\n{clean_json_string}")
+                #print(f"[DEBUG] Clean JSON response:\n{clean_json_string}")
                 
                 json_response_list = json.loads(clean_json_string)
 
@@ -135,12 +149,12 @@ class InterfaceApp(ctk.CTk):
                     params1 = self._get_params_from_emotion(intensity1)
                     if not params1:
                         raise ValueError(f"Parameters for emotion '{intensity1}' not found.")
-                    print(f"[DEBUG] Params1 for '{intensity1}': {params1}")
+                    #print(f"[DEBUG] Params1 for '{intensity1}': {params1}")
                     
                     params2 = None
                     if intensity2 and intensity2 != "None":
                         params2 = self._get_params_from_emotion(intensity2)
-                    print(f"[DEBUG] Params2 for '{intensity2}': {params2}")
+                    #print(f"[DEBUG] Params2 for '{intensity2}': {params2}")
 
                     #TO DO: gestionar como se combinen las emociones y el matiz
 
@@ -182,17 +196,17 @@ class InterfaceApp(ctk.CTk):
                         final_params['distorsion'] = (params1['distorsion'] * weight1 + params2['distorsion'] * weight2) / (weight1 + weight2)
                     
                     self.simulation_parameters_list.append(final_params)
-                    print(f"[DEBUG] Final params for fragment {final_params}")
-
-                self.destroy()
+                    #print(f"[DEBUG] Final params for fragment {final_params}")
+                self.quit()
+                #self.destroy()
 
             except (ValueError, TypeError, json.JSONDecodeError) as e:
                 messagebox.showerror("Data Error", f"Could not process data from the API.\nDetails: {e}")
         else:
             if not user_text:
-                messagebox.showwarning("Empty Field", "Please enter some text.")
+                messagebox.showwarning("Campo de texto", "Escribe sobre una experiencia personal.")
             elif not self.client:
-                messagebox.showwarning("Client not available", "Could not initialize the API client.")
+                messagebox.showwarning("Cliente no disponible", "No se ha podido inicializar el cliente de la API.")
 
 def load_emotions_from_json_string(json_str: str) -> dict:
     """
@@ -211,4 +225,3 @@ def load_emotions_from_json_string(json_str: str) -> dict:
     except json.JSONDecodeError as e:
         print(f"Error al decodificar el JSON: {e}")
         return {}
-
