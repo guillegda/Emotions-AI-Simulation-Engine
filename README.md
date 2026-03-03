@@ -1,6 +1,17 @@
 # 🌐 Emotional Sphere Visualization Engine
 
+
+
+
+
 A high-performance Python application that transforms text into real-time 3D emotional simulations. By leveraging the **Google Gemini API** for semantic analysis and **ModernGL** for GPU-accelerated rendering, the system generates a morphing sphere that represents human feelings through complex vertex displacement and lighting.
+
+https://github.com/user-attachments/assets/874ab5cb-7966-4558-bf8b-5aeac671367f
+
+
+https://github.com/user-attachments/assets/26315be5-f4e2-4792-94d8-9376e87b0bba
+
+
 
 ## 🚀 Overview
 
