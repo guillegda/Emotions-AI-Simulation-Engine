@@ -16,7 +16,6 @@ class SphereSimulator:
     
     def __init__(self, window, width: int = 800, height: int = 600, 
                  emotions_list: list = None):
-        # ... (inicialización sin cambios)
         self.window = window
         self.width = width
         self.height = height
@@ -30,7 +29,6 @@ class SphereSimulator:
         self.view = None
         self.start_time = time.time()
 
-        # Parámetros de la simulación
         self.blur_strength = 5.0
 
         # State for emotions transition
@@ -48,7 +46,7 @@ class SphereSimulator:
             self.params_A = self.emotions_list[0].copy()
             self.params_B = self.emotions_list[0].copy()
 
-        # parámetros de color para los shaders
+        # color params
         self.light_color1 = (1.0, 1.0, 1.0)
         self.light_color2 = (0.5, 0.5, 0.5)
 
@@ -80,10 +78,10 @@ class SphereSimulator:
 
     def _load_mesh(self):
         try:
-            vertices = np.load("vertices_high_res.npy")
-            indices = np.load("indices_high_res.npy")
+            vertices = np.load("vertices/vertices_high_res.npy")
+            indexes = np.load("vertices/indexes_high_res.npy")
             vbo = self.ctx.buffer(vertices.astype('f4').tobytes())
-            ibo = self.ctx.buffer(indices.astype('i4').tobytes())
+            ibo = self.ctx.buffer(indexes.astype('i4').tobytes())
             self.vao_sphere = self.ctx.simple_vertex_array(self.prog_sphere, vbo, 'in_position', index_buffer=ibo)
         except FileNotFoundError as e:
             print(f"Error: No se encontró el archivo de malla. Detalles: {e}")
@@ -107,22 +105,17 @@ class SphereSimulator:
         if self.current_index < len(self.emotions_list):
             self.params_A = self.params_B.copy()
             self.params_B = self.emotions_list[self.current_index].copy()
-            
-            # Obtenemos los parámetros de la emoción
+
             fragmento = self.params_B.get('fragment', 'N/A')
             emocion1 = self.params_B.get('emocion1', 'N/A')
             emocion2 = self.params_B.get('emocion2', 'N/A')
             matiz = self.params_B.get('matiz', 'N/A')
-            
-            # Iniciamos un nuevo hilo para la impresión animada
-            # Pasamos los parámetros de la emoción a la función como argumentos
+
             print_thread = threading.Thread(
                 target=animated_print, 
                 args=(fragmento, emocion1, emocion2, matiz)
             )
-            print_thread.start() # ¡Esto inicia el hilo de forma no bloqueante!
-            
-            # El resto del código de transición continúa inmediatamente
+            print_thread.start()
             self.is_transitioning = True
             self.transition_start_time = time.time()
             self.current_index += 1
@@ -146,7 +139,7 @@ class SphereSimulator:
 
     def render(self, now):
         """Dibuja un solo fotograma de la simulación."""
-        #Se va llamando en cada frame para animar la esfera
+        #Each time we render, we calculate the elapsed time since the start of the simulation
         simulation_time = now - self.start_time
 
         blend_factor = self._update_transition(now)
@@ -171,18 +164,18 @@ class SphereSimulator:
                 return lerp(val_A, val_B, blend_factor)
             return val_B
 
-        # Obtener los parámetros interpolados
+        # interpolated parameters for shaders
         velocidad_current = get_param('velocidad', 5.0)
         rugosidad_current = get_param('rugosidad', 10.0)
         distorsion_current = get_param('distorsion', 0.1)
         wave_direction_current = get_param('wave_direction', 0)
-        base_color_current = (0.5, 0.5, 0.5)#get_param('color1', (1.0, 1.0, 1.0), is_vector=True)
+        base_color_current = (0.5, 0.5, 0.5)
         contrast_color_current = get_param('color2', None, is_vector=True)
         hybrid_amnts_A = self.params_A.get('hybrid_amnts', [0.0, 0.0, 0.0])
         hybrid_amnts_B = self.params_B.get('hybrid_amnts', [0.0, 0.0, 0.0])
         
-        # Enviar uniformes al shader de la esfera
-        self.prog_sphere['time'].value = simulation_time  # ¡CAMBIO CLAVE AQUÍ!
+        # uniforms parameters for sphere shader
+        self.prog_sphere['time'].value = simulation_time
         self.prog_sphere['velocidad'].value = velocidad_current
         self.prog_sphere['rugosidad'].value = rugosidad_current
         self.prog_sphere['distorsion'].value = distorsion_current
@@ -204,7 +197,7 @@ class SphereSimulator:
         self.prog_sphere['effect3_amnt_B'].value = hybrid_amnts_B[2]
         self.vao_sphere.render()
 
-        # Postproceso
+        # Postproccesing
         self.ctx.screen.use()
         self.ctx.clear()
         self.fbo.color_attachments[0].use(location=0)
@@ -230,37 +223,31 @@ def start_glfw_simulation(emotions_list, record_simulation: bool = False):
     if not glfw.init():
         return
     
-    
-    # Configurar las sugerencias de la ventana
     glfw.window_hint(glfw.CONTEXT_VERSION_MAJOR, 3)
     glfw.window_hint(glfw.CONTEXT_VERSION_MINOR, 3)
     glfw.window_hint(glfw.OPENGL_PROFILE, glfw.OPENGL_CORE_PROFILE)
     glfw.window_hint(glfw.OPENGL_FORWARD_COMPAT, glfw.TRUE)
 
-    # Obtener el monitor principal y su modo de video
     monitor = glfw.get_primary_monitor()
     monitor_mode = glfw.get_video_mode(monitor)
 
     width, height = monitor_mode.size.width, monitor_mode.size.height//2
 
-    # Crear la ventana
     window = glfw.create_window(width, height, "Emotions Visualization", None, None)
     if not window:
         glfw.terminate()
         exit()
 
-    # Calcular las coordenadas para centrar la ventana en X y colocarla en la mitad superior en Y
     window_x = (monitor_mode.size.width - width) // 2
     window_y = 0
 
-    # Establecer la posición de la ventana
     glfw.set_window_pos(window, window_x, window_y)
 
     glfw.make_context_current(window)
 
     simulator = SphereSimulator(window, width, height, emotions_list=emotions_list)
 
-    # GRABACIÓN:
+    # Recording setup:
     video_writer = None
     if record_simulation:
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')
@@ -270,7 +257,6 @@ def start_glfw_simulation(emotions_list, record_simulation: bool = False):
         print(f"Iniciando grabación... guardando en '{output_filename}'")
     #
     
-    #primera transición si hay emociones en la lista
     if emotions_list:
         simulator.start_next_transition()
 
@@ -278,7 +264,6 @@ def start_glfw_simulation(emotions_list, record_simulation: bool = False):
     while not glfw.window_should_close(window):
         now = time.time()
         
-        #input
         if glfw.get_key(window, glfw.KEY_ENTER) == glfw.PRESS and not simulator.is_transitioning:
             stop = simulator.start_next_transition()
 
@@ -287,17 +272,11 @@ def start_glfw_simulation(emotions_list, record_simulation: bool = False):
 
         simulator.render(now)
 
-        #CAPTURA Y ESCRITURA DE CADA FOTOGRAMA:
         if video_writer:
-            #píxeles del framebuffer
-            #`self.ctx.screen` es el framebuffer principal
             frame_bytes = simulator.ctx.screen.read(components=3, dtype='f1')
             
-            #array de NumPy
             frame_np = np.frombuffer(frame_bytes, dtype=np.uint8).reshape((height, width, 3))
             
-            #píxeles se leen al revés (de abajo a arriba) y en RGB
-            #OpenCV espera BGR y el orden normal
             frame_np = np.flip(frame_np, 0)
             frame_np = cv2.cvtColor(frame_np, cv2.COLOR_RGB2BGR)
 
@@ -320,7 +299,6 @@ def animated_print(fragmento, emocion1, emocion2, matiz):
     Función que maneja la impresión animada en la terminal.
     Se ejecuta en un hilo separado para no bloquear la simulación.
     """
-    # Puntos suspensivos animados para el "pensando..."
     sys.stdout.write("\nAnalizando el fragmento de texto.")
     sys.stdout.flush()
     for _ in range(3):
@@ -328,10 +306,10 @@ def animated_print(fragmento, emocion1, emocion2, matiz):
         sys.stdout.write(".")
         sys.stdout.flush()
     
-    # Pausa antes de mostrar el resultado
+    # Pause before showing results
     time.sleep(1) 
     
-    # Listas de opciones de mensajes
+    # feedback messages options
     intro_options = [
         "✨ ¿Te da curiosidad ver la siguiente emoción? ✨",
         "✨ Nos llama la atención la próxima emoción✨",
@@ -367,7 +345,7 @@ def animated_print(fragmento, emocion1, emocion2, matiz):
         f"{emoji_list[2]} consiguiendo una nueva emoción compleja {matiz}{emoji_list[5]}"
     ]
 
-    # Mensajes
+    # Menssages to print, we choose one option from each category and combine them
     messages = [
         random.choice(intro_options),
         f"📖 En el fragmento de texto donde dices '{fragmento}'",

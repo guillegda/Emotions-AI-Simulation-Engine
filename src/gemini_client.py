@@ -1,9 +1,6 @@
 import os
 import customtkinter as ctk
 import time
-# Importa la clase del cliente de la API de Gemini.
-# NOTA: Asegúrate de que tu archivo `gemini_client.py` esté en la misma carpeta.
-# También necesitarás el archivo `.env` con tu clave de API.
 try:
     import google.generativeai as genai
     from dotenv import load_dotenv
@@ -96,9 +93,9 @@ class GeminiClient:
         results = []
         for texto in textos:
             start_time = time.time()
-            print(texto[:50])  # Print the first 50 characters of the text
+            print(texto[:50])
             respuesta = self.consultar(texto)
-            print(respuesta)  # Llamada al método
+            print(respuesta)
             end_time = time.time()
             
             character_count = len(texto)

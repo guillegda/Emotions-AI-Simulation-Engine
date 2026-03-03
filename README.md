@@ -1,29 +1,59 @@
-# emotion_detection_AI
-Given information through live chatting with AI agent, particle effects are simulated after analyzing the emotion of that conversation using an API REST to interact with the AI agent.
+# 🌐 Emotional Sphere Visualization Engine
 
-Para activar el entorno virtual: .\venv\Scripts\Activate.ps1
+A high-performance Python application that transforms text into real-time 3D emotional simulations. By leveraging the **Google Gemini API** for semantic analysis and **ModernGL** for GPU-accelerated rendering, the system generates a morphing sphere that represents human feelings through complex vertex displacement and lighting.
 
-Tutorial útil de python para la api de gemini: https://www.youtube.com/watch?v=LQrssQfFbUI
+## 🚀 Overview
+
+This project bridges the gap between Natural Language Processing (NLP) and Computer Graphics. It breaks down user input into emotional fragments based on **Plutchik's Wheel of Emotions**, mapping them to physical parameters like vibration, roughness, and color in a 3D environment.
+
+## 🛠 Tech Stack
+
+| Category | Tools |
+| :--- | :--- |
+| **Language** | Python 3.13.5, GLSL (OpenGL Shading Language) |
+| **Graphics** | ModernGL, GLFW, PyRR (Matrices), NumPy |
+| **AI / NLP** | Google Generative AI (Gemini Pro), python-dotenv |
+| **UI / UX** | CustomTkinter |
+| **Vision/Output** | OpenCV (MP4 Recording support) |
+
+## 🏗 Architecture
+
+The application follows a **Two-Stage Interaction Pipeline** to ensure stability between the event-driven UI and the high-frequency rendering loop:
+
+1.  **Input Stage (UI):** Built with `CustomTkinter`, users input text and configure recording options.
+2.  **Analysis Stage (Client):** The text is sent to the Gemini API with a strict system prompt. The AI returns a structured JSON-like response identifying primary/secondary emotions and their intensities.
+3.  **Simulation Stage (GPU):** The system transitions to a `GLFW` window where `ModernGL` handles the rendering.
+4.  **Interpolation Engine:** Emotions are not static; the system uses weighted linear interpolation to create smooth transitions between complex emotional states (e.g., blending "Joy" with "Anticipation").
 
 
-¿Por qué los archivos .npy?
-El formato .npy es propio de NumPy y tiene ventajas claras cuando estás trabajando con datos numéricos en Python:
 
-Ventajas:
-Velocidad: leer y escribir .npy es muy rápido.
+## 🎨 Emotional Mapping Logic
 
-Precisión total: mantiene el tipo exacto (float32, int32, etc.) sin pérdidas.
+The sphere's behavior is dictated by three main physical variables controlled via Vertex Shaders:
 
-Simplicidad en Python:
+* **Speed:** Increases the frequency of the deformation wave (higher arousal).
+* **Roughness:** Adds complexity and "peaks" to the surface (Perlin Noise frequency).
+* **Distortion:** Defines the amplitude/size of the displacement.
 
-np.save() y np.load() son funciones directas y eficientes.
-
-No necesitas hacer parsing manual como con .txt o .obj.
-
-Compacto: más pequeño que CSV o texto plano para arrays grandes.
-
-Seguro para estructuras grandes como mallas 3D.
+### Emotional Color Palette & Dynamics
+The system follows a logic where intensity equals saturation. 
+* **Joy (Yellow):** Calm vertical movements.
+* **Rage (Red):** High-frequency "spike" explosions via spherical Perlin noise.
+* **Sadness (Blue):** Slow, descending wave patterns mimicking tears.
+* **Fear (Green):** Shaking, constricted "clamped" movements.
 
 
-Rugosidad: cuantas arrugas o deformaciones le salen
-Distorsion: si esas arrugas son muy pronunciadas, si se contraen y expanden mucho
+
+## ⚡ Key Features
+
+* **Complex Shaders:** Uses **Displacement Mapping** and **Phong Reflection Models** for realistic light interaction.
+* **Hybrid Emotions:** Detects "Nuances" (Matices). For example, Joy + Acceptance = **Love**; Anger + Alertness = **Aggressiveness**.
+* **Post-Processing:** Real-time Gaussian blur filters applied via Framebuffer Objects (FBO).
+* **Recording:** Integrated OpenCV functionality to export the simulation as an MP4 file.
+
+
+## 🔧 Requirements
+Only theese libraries below are required to run the engine + Google Cloud API key compatible with the Gemini API
+
+   ```bash
+   pip install moderngl glfw numpy pyrr opencv-python customtkinter google-generativeai python-dotenv
