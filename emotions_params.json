@@ -1,0 +1,173 @@
+[
+  {
+    "Serenidad": 
+      {
+      "color": "#ADD8E6",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 0
+      },
+    "Alegría": 
+      { "color": "#FFD700",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 1
+      },
+    "Éxtasis": 
+      { "color": "#FF0392",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 2
+      },
+    "Aceptación": 
+      { "color": "#9ACD32",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 0
+      },
+    "Confianza": 
+      { "color": "#4682B4",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 1
+      },
+    "Admiración": 
+      { "color": "#f797f7",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 2
+      },
+    "Aprensión": 
+      { "color": "#abbd6b",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 0
+      },
+    "Miedo": 
+      { "color": "#736785",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 1
+      },
+    "Terror": 
+      { "color": "#30223b",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 2
+      },
+    "Distracción": 
+      { "color": "#b1fce4",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 0
+      },
+    "Sorpresa": 
+      { "color": "#FFFF00",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 1
+      },
+    "Asombro": 
+      { "color": "#2ef2e8",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 2
+      },
+    "Melancolía": 
+      { "color": "#9ba4e8",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 0
+      },
+    "Tristeza": 
+      { "color": "#435fba",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 1
+      },
+    "Pena": 
+      { "color": "#202059",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 2
+      },
+    "Aburrimiento": 
+      { "color": "#9eaeb0",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 0
+      },
+    "Asco": 
+      { "color": "#556B2F",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 1
+      },
+    "Odio": 
+      { "color": "#57122e",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 2
+      },
+    "Enfado": 
+      { "color": "#DC143C",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 0
+      },
+    "Ira": 
+      { "color": "#a60a0a",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 1
+      },
+    "Furia": 
+      { "color": "#b00505",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 2
+      },
+    "Interés": 
+      { "color": "#20B2AA",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 0
+      },
+    "Anticipación": 
+      { "color": "#FFA500",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 1
+      },
+    "Vigilancia": 
+      { "color": "#ff8c00",
+      "velocidad": 0.5,
+      "rugosidad": 0.3,
+      "distorsion": 0.2,
+      "wave_direction": 2
+      }
+  }
+]
