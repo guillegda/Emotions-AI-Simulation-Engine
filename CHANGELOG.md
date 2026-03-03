@@ -2,7 +2,7 @@
 
 All notable changes to the **Emotional Sphere Visualization Engine** will be documented in this file.
 
-## [1.1.0] - 2025-05-20
+## [1.1.0] - 2025-08-21
 ### Added
 - **Recording Module:** Integrated OpenCV support to export simulations directly to `.mp4` format.
 - **Enhanced Prompting:** Added strict JSON formatting rules to the Gemini API client to prevent parsing errors.
@@ -18,7 +18,7 @@ All notable changes to the **Emotional Sphere Visualization Engine** will be doc
 
 ---
 
-## [1.0.0] - 2025-02-15
+## [1.0.0] - 2025-08-02
 ### Added
 - **Core Engine:** First stable release of the OpenGL rendering core using ModernGL.
 - **Emotion Mapping:** Implementation of Plutchik’s Wheel of Emotions into the 3D displacement logic.
@@ -30,7 +30,7 @@ All notable changes to the **Emotional Sphere Visualization Engine** will be doc
 
 ---
 
-## [0.5.0] - 2025-01-10
+## [0.5.0] - 2025-07-18
 ### Added
 - **Proof of Concept:** Basic sphere generation using `pyrr` for MVP (Model-View-Projection) matrices.
 - **API Integration:** Initial connection with Google Gemini API for sentiment fragmenting.
