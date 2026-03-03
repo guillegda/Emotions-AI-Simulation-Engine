@@ -198,7 +198,7 @@ class InterfaceApp(ctk.CTk):
                     self.simulation_parameters_list.append(final_params)
                     #print(f"[DEBUG] Final params for fragment {final_params}")
                 self.quit()
-                #self.destroy()
+                self.destroy()
 
             except (ValueError, TypeError, json.JSONDecodeError) as e:
                 messagebox.showerror("Data Error", f"Could not process data from the API.\nDetails: {e}")

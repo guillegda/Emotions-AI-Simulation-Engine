@@ -44,9 +44,14 @@ Tipo "Alerta" + tipo "Alegría" = matiz "Optimismo".
 Estilo de output que necesito que generes:
 Quiero que sigas un formato de respuesta muy estricto, siguiendo un formato similar al de un archivo JSON.
 {fragmento:"Estallé de risa tras su chiste,", tipo1:"Alegría", intensidad1:"Éxtasis", tipo2:"Alerta", intensidad2:"Interés", matiz:"Optimismo"};
-{fragmento:"pero eso no hizo que bajase la guardia.", tipo1:"Alerta", intensidad1:"Anticipación", tipo2:"Ninguno", intensidad2:"Ninguno", matiz:"Ninguno"};
+{fragmento:"pero eso no hizo que bajase la guardia.", tipo1:"Alerta", intensidad1:"Anticipación", tipo2:"None", intensidad2:"None", matiz:"None"};
 Siempre deben aparecer los campos: {fragmento, tipo1, intensidad1, tipo2, intensidad2, matiz} como formato de respuesta.
 Si un fragmento tiene más de 2 tipos de emociones dividelo para que cada fragmento solo tenga 2 emociones a la vez como máximo.
+IMPORTANTE: Intenta que los fragmentos tengan dos emociones diferentes a la vez, pero si no es posible, un solo tipo de emoción.
+Es obligatorio que tipo1 tenga siempre un valor, pero tipo2 puede ser "None" si no hay una segunda emoción en el fragmento.
+Si no hay matiz, el campo matiz debe ser "None".
+Fomenta la detección de dos tipos de emociones a la vez en un mismo fragmento.
+En la respuesta todos estos objetos deben estar envueltos en corchetes [] y separados por comas ,, así: [{}, {}, {}, {}]
 \n
 """
 ctk.set_appearance_mode("System")
