@@ -1,4 +1,4 @@
-from gemini_client import GeminiClient
+from src.gemini_client import GeminiClient
 input_tests = [
     "Una vez, hace como tres años, me pasó algo raro que todavía no sé bien cómo procesar. Estaba en una reunión familiar, de esas donde hay demasiada comida, risas forzadas y gente que no ves desde hace siglos. Todo iba bien, bastante normal, hasta que apareció mi papá con su nueva pareja. Nadie nos había dicho nada.",
     # "Fue un golpe raro. No porque no pudiera rehacer su vida, sino porque fue tan repentino… y justo ahí, sin previo aviso. Sentí como una mezcla entre sorpresa, incomodidad, un poco de rabia y también una culpa que no sabía de dónde venía.",

@@ -1,5 +1,5 @@
-from interface_app import InterfaceApp
-from sphere_simulator import start_glfw_simulation
+from src.interface_app import InterfaceApp
+from src.sphere_simulator import start_glfw_simulation
 def main():
     """
     Main function that orchestrates the program's execution.

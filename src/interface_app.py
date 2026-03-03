@@ -73,15 +73,15 @@ class InterfaceApp(ctk.CTk):
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
 
-        # Calcular el tamaño de la ventana (mitad superior de la pantalla)
+        # window dimensions: full width, half height
         window_width = screen_width
         window_height = screen_height // 2
 
-        # Calcular la posición (centrada en el eje x, en la parte superior del eje y)
+        # position the window
         x_position = 0
         y_position = 0
 
-        # Establecer la geometría de la ventana
+        # window geometry
         self.geometry(f"{window_width}x{window_height}+{x_position}+{y_position}")
         #self.geometry("1280x720")
         #self.minsize(800, 600)
@@ -174,13 +174,12 @@ class InterfaceApp(ctk.CTk):
                     }
                     
                     if params2:
-                        weight1 = 1.2 # Peso para la emoción 1
-                        weight2 = .8 # Peso para la emoción 2
+                        weight1 = 1.2 # emotion 1 is the main one, so we give it more weight
+                        weight2 = .8 # emotion 2 is the secondary one, so we give it less weight
                         
                         hybrid_amnts1 = params1.get('hybrid_amnts', [0.0, 0.0, 0.0])
                         hybrid_amnts2 = params2.get('hybrid_amnts', [0.0, 0.0, 0.0])
                         
-                        #q ambas listas tengan la misma longitud
                         min_len = min(len(hybrid_amnts1), len(hybrid_amnts2))
                         
                         combined_hybrid_amnts = [
@@ -216,9 +215,9 @@ def load_emotions_from_json_string(json_str: str) -> dict:
     try:
         data = json.loads(json_str)
         emotions_dict = {}
-        # Iteramos a través de la lista de diccionarios
+        # iterating through the list of emotions, each item is a dictionary with a single key (the emotion)
         for item in data:
-            # Cada item es un diccionario con una sola clave (la emoción)
+            # each item is a dictionary with a single key (the emotion name) and its parameters as value
             for emotion, params in item.items():
                 emotions_dict[emotion] = params
         return emotions_dict
